@@ -2,9 +2,9 @@
     "author": "joscha",
     "dependencies": {},
     "keywords": [],
-    "name": "weather-app",
+    "name": "happimeter",
     "pebble": {
-        "displayName": "Weather App",
+        "displayName": "happimeter",
         "enableMultiJS": false,
         "messageKeys": [
             "testkey"

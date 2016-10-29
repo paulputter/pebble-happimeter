@@ -68,8 +68,10 @@ void menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *da
 
 void setup_menu_layer(Window *window) {
 	Layer *window_layer = window_get_root_layer(window);
+  
+  GRect window_bounds = layer_get_unobstructed_bounds(window_layer);
 
-    mainMenuLayer = menu_layer_create(GRect(0, 0, 144, 168));
+    mainMenuLayer = menu_layer_create(window_bounds);
     menu_layer_set_callbacks(mainMenuLayer, NULL, (MenuLayerCallbacks){
         .get_num_sections = menu_get_num_sections_callback,
         .get_num_rows = menu_get_num_rows_callback,

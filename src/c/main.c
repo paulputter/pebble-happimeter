@@ -11,13 +11,16 @@ void launch_main_window (){
 
 int main (){
 
+  //set up
   splash_window_create();
   main_window_create();
   
   window_stack_push(splash_window_get_window(), true);
   app_timer_register(3000, launch_main_window, NULL); 
   
-  
+  //main event loop
   app_event_loop();
+  
+  //clean up
   splash_window_destroy();
 }
