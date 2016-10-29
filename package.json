@@ -1,5 +1,5 @@
 {
-    "author": "coingroup9_colognejilinbamberg",
+    "author": "joscha",
     "dependencies": {},
     "keywords": [],
     "name": "happimeter",
@@ -13,6 +13,12 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/100px-Face-wink.svg.png",
+                    "name": "winkesmiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/main_smily.png",
                     "name": "IMAGE_SPLASH",
                     "targetPlatforms": null,
@@ -23,7 +29,10 @@
         "sdkVersion": "3",
         "targetPlatforms": [
             "aplite",
-            "basalt"
+            "basalt",
+            "chalk",
+            "diorite",
+            "emery"
         ],
         "uuid": "3808bef8-6b6f-4478-aec0-0649e99c5bb7",
         "watchapp": {

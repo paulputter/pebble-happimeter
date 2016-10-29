@@ -11,7 +11,7 @@ return 2;
 uint16_t menu_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {
     switch(section_index){
       case 0:
-          return 3;
+          return 5;
       case 1:
           return 1;
       default:
@@ -42,15 +42,24 @@ void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *c
         switch (cell_index->row){
           case 0:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, "Happy", NULL, NULL);
+              menu_cell_basic_draw(ctx, cell_layer, "Super happy", NULL, gbitmap_create_with_resource(RESOURCE_ID_winkesmiley));
             break;
            case 1:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, "Normal", NULL, NULL);
+              menu_cell_basic_draw(ctx, cell_layer, "Happy", NULL, NULL);
             break;
            case 2:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, "Unhappy", NULL, NULL);
+              menu_cell_basic_draw(ctx, cell_layer, "Normal", NULL, NULL);
+            break;
+            case 3:
+          // NULL = Smily icon to input
+              menu_cell_basic_draw(ctx, cell_layer, "A little bit unhappy", NULL, NULL);
+            break;
+           case 4:
+          // NULL = Smily icon to input
+              menu_cell_basic_draw(ctx, cell_layer, "Unhappy", "testsubtitle", NULL);
+         
             break;
         }
         break;

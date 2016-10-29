@@ -10,6 +10,7 @@ TextLayer *splashImageTitle;
 void splash_window_load(Window *window){
   Layer *window_layer = window_get_root_layer(window);
   GRect window_bounds = layer_get_unobstructed_bounds(window_layer);
+ 
   
   
   // Loads a png Image from ressources
