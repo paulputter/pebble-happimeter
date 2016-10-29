@@ -1,0 +1,34 @@
+{
+    "author": "joscha",
+    "dependencies": {},
+    "keywords": [],
+    "name": "weather-app",
+    "pebble": {
+        "displayName": "Weather App",
+        "enableMultiJS": false,
+        "messageKeys": [
+            "testkey"
+        ],
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "file": "images/main_smily.png",
+                    "name": "IMAGE_SPLASH",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                }
+            ]
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt"
+        ],
+        "uuid": "3808bef8-6b6f-4478-aec0-0649e99c5bb7",
+        "watchapp": {
+            "watchface": false
+        }
+    },
+    "version": "1.0.0"
+}
