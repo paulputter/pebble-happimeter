@@ -1,25 +1,13 @@
 #include <pebble.h>
-#include <pebble-simple-health/pebble-simple-health.h>
 
 static Window *s_window;
 static TextLayer *s_text_layer;
 
-static void health_updated() {
-  Layer *window_layer = window_get_root_layer(s_window);
-  GRect bounds = layer_get_bounds(window_layer);
-	
-  // Create a text layer and set the text
-	s_text_layer = text_layer_create(bounds);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Steps %d", health_get_metric_sum(HealthMetricStepCount));
-	// text_layer_set_text(s_text_layer, test);
-}
-
 static void init(void) {
-  health_init(health_updated);
+  AppWorkerResult app_worker_result = app_worker_launch();
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "App worker launched with result %d", app_worker_result);
   
-  if (!health_is_available()) {
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "Health service is not available");
-  }
+  // IMPORTANT: Code after this line is not relevant for data collection
   
 	// Create a window and get information about the window
 	s_window = window_create();
@@ -28,7 +16,7 @@ static void init(void) {
 	
   // Create a text layer and set the text
 	s_text_layer = text_layer_create(bounds);
-	text_layer_set_text(s_text_layer, "Hi, Pascal! Loading health...");
+	text_layer_set_text(s_text_layer, "Hi! This app is going to send sensor data once per day...");
   
   // Set the font and text alignment
 	text_layer_set_font(s_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
@@ -42,9 +30,6 @@ static void init(void) {
 
 	// Push the window, setting the window animation to 'true'
 	window_stack_push(s_window, true);
-	
-	// App Logging!
-	APP_LOG(APP_LOG_LEVEL_DEBUG, "Just pushed a window!");
 }
 
 static void deinit(void) {
@@ -53,9 +38,6 @@ static void deinit(void) {
 	
 	// Destroy the window
 	window_destroy(s_window);
-  
-  // Destroy health
-  health_deinit();
 }
 
 int main(void) {

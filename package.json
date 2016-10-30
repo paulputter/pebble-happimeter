@@ -1,19 +1,18 @@
 {
     "author": "pbudner@smail.uni-koeln.de",
-    "dependencies": {
-        "pebble-events": "^1.2.0",
-        "pebble-simple-health": "^1.0.6"
-    },
+    "dependencies": {},
     "keywords": [],
-    "name": "pebble-c-test-1",
+    "name": "happimeter",
     "pebble": {
         "capabilities": [
             "location",
             "health"
         ],
-        "displayName": "Pebble C Test #1",
+        "displayName": "Happimeter",
         "enableMultiJS": true,
-        "messageKeys": [],
+        "messageKeys": [
+            "Steps"
+        ],
         "projectType": "native",
         "resources": {
             "media": []
