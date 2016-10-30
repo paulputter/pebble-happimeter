@@ -2,9 +2,9 @@
     "author": "joscha",
     "dependencies": {},
     "keywords": [],
-    "name": "happimeter",
+    "name": "weather-app",
     "pebble": {
-        "displayName": "happimeter",
+        "displayName": "Weather App",
         "enableMultiJS": false,
         "messageKeys": [
             "testkey"
@@ -12,12 +12,6 @@
         "projectType": "native",
         "resources": {
             "media": [
-                {
-                    "file": "images/100px-Face-wink.svg.png",
-                    "name": "winkesmiley",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
                 {
                     "file": "images/main_smily.png",
                     "name": "IMAGE_SPLASH",

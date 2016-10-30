@@ -1,19 +1,19 @@
 #include <pebble.h>
 #include "main_window.h"
+#include "sportquestion_window.h"
 
 Window *mainWindow;
 MenuLayer *mainMenuLayer;
+TextLayer *text_layer;
 
 uint16_t menu_get_num_sections_callback(MenuLayer *menu_layer, void *data) {
-return 2;
+return 1;
 }
 
 uint16_t menu_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {
     switch(section_index){
       case 0:
           return 5;
-      case 1:
-          return 1;
       default:
           return 0;
     }
@@ -29,20 +29,16 @@ void menu_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t 
       case 0:
         menu_cell_basic_header_draw(ctx, cell_layer, "Moods");
       break;
-       case 1:
-        menu_cell_basic_header_draw(ctx, cell_layer, "other");
-      break;
     }
 }
 
 void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *cell_index, void *data) {
-
     switch (cell_index->section){
       case 0:
         switch (cell_index->row){
           case 0:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, "Super happy", NULL, gbitmap_create_with_resource(RESOURCE_ID_winkesmiley));
+              menu_cell_basic_draw(ctx, cell_layer, "Really happy", NULL, NULL);
             break;
            case 1:
           // NULL = Smily icon to input
@@ -52,35 +48,32 @@ void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *c
           // NULL = Smily icon to input
               menu_cell_basic_draw(ctx, cell_layer, "Normal", NULL, NULL);
             break;
-            case 3:
+           case 3:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, "A little bit unhappy", NULL, NULL);
+              menu_cell_basic_draw(ctx, cell_layer, "Unhappy", NULL, NULL);
             break;
            case 4:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, "Unhappy", "testsubtitle", NULL);
-         
+              menu_cell_basic_draw(ctx, cell_layer, "Really unhappy", NULL, NULL);
             break;
         }
+    
         break;
       
-      case 1:
-              menu_cell_basic_draw(ctx, cell_layer, "Add something to ask", NULL, NULL );
-        break;
     }
 }
 
 // Detect when somebody clicks on a menu item
 void menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
-	
+  {
+    window_stack_push(sportquestion_window_get_window(), true); 
+}
 }
 
 void setup_menu_layer(Window *window) {
 	Layer *window_layer = window_get_root_layer(window);
-  
-  GRect window_bounds = layer_get_unobstructed_bounds(window_layer);
 
-    mainMenuLayer = menu_layer_create(window_bounds);
+    mainMenuLayer = menu_layer_create(GRect(0, 0, 144, 168));
     menu_layer_set_callbacks(mainMenuLayer, NULL, (MenuLayerCallbacks){
         .get_num_sections = menu_get_num_sections_callback,
         .get_num_rows = menu_get_num_rows_callback,

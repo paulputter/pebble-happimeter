@@ -1,7 +1,7 @@
 #include <pebble.h>
 #include "splash_window.h"
 #include "main_window.h"
-
+#include "sportquestion_window.h"
 
 // Timer to see how long you can see the main window
 void launch_main_window (){
@@ -11,16 +11,16 @@ void launch_main_window (){
 
 int main (){
 
-  //set up
   splash_window_create();
+   sportquestion_window_create();
   main_window_create();
+ 
   
   window_stack_push(splash_window_get_window(), true);
   app_timer_register(3000, launch_main_window, NULL); 
+   
   
-  //main event loop
   app_event_loop();
-  
-  //clean up
+  sportquestion_window_destroy();
   splash_window_destroy();
 }
