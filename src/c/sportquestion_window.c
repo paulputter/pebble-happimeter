@@ -8,6 +8,7 @@ static TextLayer *s_label_layer;
 static BitmapLayer *s_icon_layer;
 static ActionBarLayer *s_action_bar_layer;
 
+
 static GBitmap *s_icon_bitmap, *s_tick_bitmap, *s_cross_bitmap;
 
 void up_single_click_handler(ClickRecognizerRef recognizer, void *context)
@@ -18,6 +19,11 @@ void up_single_click_handler(ClickRecognizerRef recognizer, void *context)
 void down_single_click_handler(ClickRecognizerRef recognizer, void *context)
 {
  window_stack_push(whoyouwith_window_get_window(), true);
+}
+
+void click_config_provider(void *context) {
+  window_single_click_subscribe(BUTTON_ID_UP, (ClickHandler)up_single_click_handler);
+  window_single_click_subscribe(BUTTON_ID_DOWN, (ClickHandler) down_single_click_handler);
 }
 
 void sportquestion_window_load(Window *window){
@@ -48,12 +54,11 @@ layer_add_child(window_layer, bitmap_layer_get_layer(s_icon_layer));
   action_bar_layer_set_icon(s_action_bar_layer, BUTTON_ID_UP, s_tick_bitmap);
   action_bar_layer_set_icon(s_action_bar_layer, BUTTON_ID_DOWN, s_cross_bitmap);
   action_bar_layer_add_to_window(s_action_bar_layer, window);
+  
+  // Set the click config provider:
+  action_bar_layer_set_click_config_provider(s_action_bar_layer, click_config_provider);
 }
 
-void config_provider(void *context) {
-   window_single_click_subscribe(BUTTON_ID_UP, up_single_click_handler);
-  window_single_click_subscribe(BUTTON_ID_DOWN, down_single_click_handler);
-}
 
 void sportquestion_window_unload(Window *window){
   text_layer_destroy(s_label_layer);
@@ -77,8 +82,7 @@ void sportquestion_window_create() {
         .unload =sportquestion_window_unload,
     });
   }
-  //window_set_click_config_provider(sportquestionWindow, click_config_provider);
-  window_set_click_config_provider(sportquestionWindow, (ClickConfigProvider) config_provider);
+  //window_set_click_config_provider(sportquestionWindow, (ClickConfigProvider) click_config_provider);
   window_stack_push(sportquestionWindow, true);
 }
 

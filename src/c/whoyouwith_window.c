@@ -23,7 +23,7 @@ void select_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_
 void select_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *cell_index, void *data) {
 }
 
-// Detect when somebody hits the select button
+
 void select_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
 }
 
@@ -41,7 +41,6 @@ void select_menu_layer(Window *window) {
     });
 
     menu_layer_set_click_config_onto_window(whoyouwithMenuLayer, window);
-
     layer_add_child(window_layer, menu_layer_get_layer(whoyouwithMenuLayer));
 }
 
