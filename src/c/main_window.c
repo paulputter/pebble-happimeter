@@ -63,7 +63,7 @@ void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *c
     }
 }
 
-// Detect when somebody clicks on a menu item
+// Detect when somebody hits the select button
 void menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
   {
     window_stack_push(sportquestion_window_get_window(), true); 

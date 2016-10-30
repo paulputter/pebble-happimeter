@@ -1,5 +1,6 @@
 #include <pebble.h>
 #include "sportquestion_window.h"
+#include "whoyouwith_window.h"
 
 Window *sportquestionWindow;
 MenuLayer *sportquestionMenuLayer;
@@ -9,12 +10,21 @@ static ActionBarLayer *s_action_bar_layer;
 
 static GBitmap *s_icon_bitmap, *s_tick_bitmap, *s_cross_bitmap;
 
+void up_single_click_handler(ClickRecognizerRef recognizer, void *context)
+{
+ window_stack_push(whoyouwith_window_get_window(), true);
+}
 
+void down_single_click_handler(ClickRecognizerRef recognizer, void *context)
+{
+ window_stack_push(whoyouwith_window_get_window(), true);
+}
 
 void sportquestion_window_load(Window *window){
+  
  Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
-
+  
    s_icon_bitmap = gbitmap_create_with_resource(RESOURCE_ID_CONFIRM);
   
   const GEdgeInsets icon_insets = {.top = 0, .right = 28, .bottom = 90, .left = 14};
@@ -40,6 +50,10 @@ layer_add_child(window_layer, bitmap_layer_get_layer(s_icon_layer));
   action_bar_layer_add_to_window(s_action_bar_layer, window);
 }
 
+void config_provider(void *context) {
+   window_single_click_subscribe(BUTTON_ID_UP, up_single_click_handler);
+  window_single_click_subscribe(BUTTON_ID_DOWN, down_single_click_handler);
+}
 
 void sportquestion_window_unload(Window *window){
   text_layer_destroy(s_label_layer);
@@ -63,9 +77,10 @@ void sportquestion_window_create() {
         .unload =sportquestion_window_unload,
     });
   }
+  //window_set_click_config_provider(sportquestionWindow, click_config_provider);
+  window_set_click_config_provider(sportquestionWindow, (ClickConfigProvider) config_provider);
   window_stack_push(sportquestionWindow, true);
 }
-
 
 
 void sportquestion_window_destroy(){

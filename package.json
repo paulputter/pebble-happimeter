@@ -13,14 +13,14 @@
         "resources": {
             "media": [
                 {
-                    "file": "images/confirm.png",
-                    "name": "CONFIRM",
+                    "file": "images/tick.png",
+                    "name": "TICK",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
                 {
-                    "file": "images/tick.png",
-                    "name": "TICK",
+                    "file": "images/main_smily.png",
+                    "name": "IMAGE_SPLASH",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
@@ -31,8 +31,8 @@
                     "type": "bitmap"
                 },
                 {
-                    "file": "images/main_smily.png",
-                    "name": "IMAGE_SPLASH",
+                    "file": "images/confirm.png",
+                    "name": "CONFIRM",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 }
