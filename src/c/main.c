@@ -12,7 +12,7 @@ void launch_main_window (){
 int main (){
 
   splash_window_create();
-   sportquestion_window_create();
+  sportquestion_window_create();
   main_window_create();
  
   
