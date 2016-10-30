@@ -1,0 +1,33 @@
+{
+    "author": "pbudner@smail.uni-koeln.de",
+    "dependencies": {
+        "pebble-events": "^1.2.0",
+        "pebble-simple-health": "^1.0.6"
+    },
+    "keywords": [],
+    "name": "pebble-c-test-1",
+    "pebble": {
+        "capabilities": [
+            "location",
+            "health"
+        ],
+        "displayName": "Pebble C Test #1",
+        "enableMultiJS": true,
+        "messageKeys": [],
+        "projectType": "native",
+        "resources": {
+            "media": []
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt",
+            "chalk"
+        ],
+        "uuid": "516d3ba1-4999-40aa-a230-3fa5127bbcc0",
+        "watchapp": {
+            "watchface": false
+        }
+    },
+    "version": "1.0.0"
+}
