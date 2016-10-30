@@ -60,6 +60,7 @@ layer_add_child(window_layer, bitmap_layer_get_layer(s_icon_layer));
 }
 
 
+
 void sportquestion_window_unload(Window *window){
   text_layer_destroy(s_label_layer);
   action_bar_layer_destroy(s_action_bar_layer);
@@ -82,7 +83,6 @@ void sportquestion_window_create() {
         .unload =sportquestion_window_unload,
     });
   }
-  //window_set_click_config_provider(sportquestionWindow, (ClickConfigProvider) click_config_provider);
   window_stack_push(sportquestionWindow, true);
 }
 
