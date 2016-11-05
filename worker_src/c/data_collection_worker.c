@@ -1,7 +1,7 @@
 #include <pebble_worker.h>
 
 // Constants
-const TimeUnits UPDATE_INTERVAL = MINUTE_UNIT; // TODO: Set this to hour for production!!
+const TimeUnits UPDATE_INTERVAL = HOUR_UNIT; // Set to Hour_Unit
 
 // Health Measure struct
 struct HealthMeasure
@@ -53,51 +53,64 @@ static void calculateHeartRateStatisticsAndAmbientlight(int hour) {
   fetchedData[hour].MaxHeartRate = 0;
   fetchedData[hour].MinHeartRate = 0;
   fetchedData[hour].AverageHeartRate = 0;
+  int validRecords = 0;
   
   // Query for the last hour, max 60 minute-level records
-  // TODO: Right now it queries for the last minute (so only one entry)
   const time_t query_end = time(NULL); // now
-  const time_t query_start = query_end - SECONDS_PER_MINUTE; // one minute ago
-  uint32_t max_records = (query_end - query_start); // / SECONDS_PER_MINUTE;
-  HealthMinuteData *data = (HealthMinuteData*)malloc(max_records * sizeof(HealthMinuteData));
+  time_t query_start = 0;
+  int minute_counter = 0;
+  while (minute_counter < 60){
+    query_start = query_end - SECONDS_PER_MINUTE; // one minute ago
+    uint32_t max_records = (query_end - query_start); // / SECONDS_PER_MINUTE;
+    HealthMinuteData *data = (HealthMinuteData*)malloc(max_records * sizeof(HealthMinuteData));
 
-  // Populate the array
-  max_records = get_available_records(data, query_start, query_end, max_records);
+    // Populate the array
+     max_records = get_available_records(data, query_start, query_end, max_records);
   
-  // Calculate the measures
-  int validRecords = 0;
-  for(uint32_t i = 0; i < max_records; i++) {
-    if(!data[i].is_invalid) {
-      validRecords++;
-      fetchedData[hour].AverageLightLevel = fetchedData[hour].AverageLightLevel + (int) data[i].light; 
-      fetchedData[hour].AverageHeartRate += (int)data[i].heart_rate_bpm;
-      
-      if(fetchedData[hour].MinHeartRate == 0 || fetchedData[hour].MinHeartRate > (int)data[i].heart_rate_bpm) {
-        fetchedData[hour].MinHeartRate = (int)data[i].heart_rate_bpm;
-      }
-      
-      if(fetchedData[hour].MaxHeartRate == 0 || fetchedData[hour].MaxHeartRate < (int)data[i].heart_rate_bpm) {
-        fetchedData[hour].MaxHeartRate = (int)data[i].heart_rate_bpm;
-      }
-    } else {
-      APP_LOG(APP_LOG_LEVEL_INFO, "Record %d was not valid.", (int)i);
-    }
+     // Calculate the measures
+     for(uint32_t i = 0; i < max_records; i++) {
+      if(!data[i].is_invalid) {
+         validRecords++;
+         fetchedData[hour].AverageLightLevel = fetchedData[hour].AverageLightLevel + (int) data[i].light;
+         fetchedData[hour].AverageHeartRate += (int)data[i].heart_rate_bpm;
+
+        if(fetchedData[hour].MinHeartRate == 0 || fetchedData[hour].MinHeartRate > (int)data[i].heart_rate_bpm) {
+          fetchedData[hour].MinHeartRate = (int)data[i].heart_rate_bpm;
+        }
+
+         if(fetchedData[hour].MaxHeartRate == 0 || fetchedData[hour].MaxHeartRate < (int)data[i].heart_rate_bpm) {
+           fetchedData[hour].MaxHeartRate = (int)data[i].heart_rate_bpm;
+          }
+       } else {
+         APP_LOG(APP_LOG_LEVEL_INFO, "Record %d was not valid.", (int)i);
+       }
+     }
+     query_end = query_start;
+      free(data);
+      minute_counter++;
   }
-  
-  fetchedData[hour].AverageLightLevel = fetchedData[hour].AverageLightLevel / validRecords;  
+  fetchedData[hour].AverageLightLevel = fetchedData[hour].AverageLightLevel / validRecords;
   fetchedData[hour].AverageHeartRate = fetchedData[hour].AverageHeartRate / validRecords;
-  free(data);
 }
 
 // Calculates all health metrics and store them in the global variables
 static void setHealthMetrics() {
-  time_t temp = time(NULL); 
+  time_t temp = time(NULL);
   struct tm *tick_time = localtime(&temp);
   int hour = tick_time->tm_hour;
   
   APP_LOG(APP_LOG_LEVEL_INFO, "Current hour: %d", hour);
   
   // TODO: Get the metrics for the last hour instead of per day
+  fetchedData[hour].StepsPerDay = health_service_sum(HealthMetricStepCount, hour - 1, hour);
+  fetchedData[hour].RestingKCalories = health_service_sum(HealthMetricRestingKCalories, hour - 1, hour);
+  fetchedData[hour].SleepSeconds = health_service_sum(HealthMetricSleepSeconds, hour - 1, hour);
+  fetchedData[hour].SleepRestfulSeconds = health_service_sum(HealthMetricSleepRestfulSeconds, hour - 1, hour);
+  fetchedData[hour].ActiveSeconds = health_service_sum(HealthMetricActiveSeconds, hour - 1, hour);
+  fetchedData[hour].ActiveKCalories = health_service_sum(HealthMetricActiveKCalories, hour - 1, hour);
+  fetchedData[hour].WalkedDistanceMeters = health_service_sum(HealthMetricWalkedDistanceMeters, hour - 1, hour);
+
+  /* Daily metrics
   fetchedData[hour].StepsPerDay = health_service_sum_today(HealthMetricStepCount);
   fetchedData[hour].RestingKCalories = health_service_sum_today(HealthMetricRestingKCalories);
   fetchedData[hour].SleepSeconds = health_service_sum_today(HealthMetricSleepSeconds);
@@ -105,6 +118,8 @@ static void setHealthMetrics() {
   fetchedData[hour].ActiveSeconds = health_service_sum_today(HealthMetricActiveSeconds);
   fetchedData[hour].ActiveKCalories = health_service_sum_today(HealthMetricActiveKCalories);
   fetchedData[hour].WalkedDistanceMeters = health_service_sum_today(HealthMetricWalkedDistanceMeters);
+  fetchedData[hour].CurrentActivity = health_service_peek_current_activities();
+  */
   fetchedData[hour].CurrentActivity = health_service_peek_current_activities();
   calculateHeartRateStatisticsAndAmbientlight(hour);
   
