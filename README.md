@@ -7,8 +7,8 @@ Our mind feels and our body senses when we are happy – or unhappy. Knowing whe
 
 *Research Hypothesis*: Comparing Pebble sensor readings with emotional state will allow us to correlate mood state with Pebble readings to automatically calculate mood state from Pebble sensor readings.
 
-## Preliminary Database Structure
-###### Relational Database Structure (e.g. using MySQL)
+## Data Specification
+###### Relational Data Structure (e.g. using MySQL)
 
 ### User
 A table that stores information about every user using the app.
@@ -16,21 +16,44 @@ A table that stores information about every user using the app.
 Name | Type | Description
 --- | --- | ---
 ID | *uint* | Unique ID of the user (auto increment)
-GUID | string | Unique device iD
-Name | string | Random (funny) name
-Password | int | Random four digits
-SignupAt | DateTime | DateTime when the user was created
-LastLogin | DateTime | Last time the user logged in
+DeviceID | *string* | Unique device ID
+Mail | *string* | Unique mail
+Name | *string* | Name
+Age | *uint* | Age of the user
+Password | *string* | Password of the user (Encrypted/Hashed)
+Avatar | *string* |URL to the users avatar/picture
+SignupAt | *DateTime* | DateTime when the user was created
+LastLogin | *DateTime* | Last time the user logged in
 
+### Auth
+A table that stores auth sessions and their assocations to the user.
 
-### Measuring Sensor Data
-A table that stores all sensor measuring data associated to an user.
+Name | Type | Description
+--- | --- | ---
+ID | *uint* | Unique ID of the user (auto increment)
+UserID | *uint* | ID of the user
+Token | *string* | Random GUID for the session
+Created | *DateTime* | DateTime when the session was created
+
+### Happiness Data
+A table that stores all happiness data associated to an user.
 
 Name | Type | Description
 --- | --- | ---
 ID | *uint* | Unique ID of the dataset
 UserID | *unit* | Unique ID of the user associated with this dataset
-InsertedAt | *DateTime* | The DateTime this datasheet was inserted
+Happiness | *uint* | Happiness Likert Scale
+WhoHaveYouBeenWith | *uint* | Enum that indicates who has the user been with
+DidYouDoSports | *boolean* | Indicates whether the user did any sports activity
+
+### Sensor Data
+A table that stores all measuring data associated to an user.
+
+Name | Type | Description
+--- | --- | ---
+ID | *uint* | Unique ID of the dataset
+UserID | *unit* | Unique ID of the user associated with this dataset
+Timestamp | *DateTime* | The DateTime this datasheet is associated with
 Steps | *uint* | The number of steps
 AvgBPM | *uint* | Average Heart Rate in BPM
 MinBPM | *uint* | Minimum Heart Rate in BPM
@@ -43,22 +66,85 @@ SleepRestfulSeconds | *uint* | The number of seconds the user was deeply sleepin
 ActiveSeconds | *uint* | The number of seconds the user was active
 ActiveKCalories | *uint* | The burned kilo calories during activity
 WalkedDistanceInMeters | *uint* | The number of meteres the user walked
-PositionLat | *tdb.* | Current GPS position of the user (Lat)
-PositionLon | *tdb.* | Current GPS position of the user (Lon)
-
-
-### Happiness Data
-A table that stores all happiness data associated to an user.
-
-Name | Type | Description
---- | --- | ---
-ID | *uint* | Unique ID of the dataset
-UserID | *unit* | Unique ID of the user associated with this dataset
-Happiness | *uint* | Happiness Likert Scale
-... | ... | ...
-
+PositionLat | *Decimal(9,6)* | Current lat position of the user (GPS)
+PositionLon | *Decimal(9,6)* | Current lon position of the user (GPS)
 
 ## API Description
-###### A REST API for pushing data and authentication
+###### A REST API
 
-*tdb.*
+Preliminary v0 specification. Using Python/Flask at the development server of Rain.
+
+### User
+#### Initial Signup
+##### [POST] /user/
+###### Request Body
+Name | Type | Description
+--- | --- | ---
+GUID | *string* | Unique device ID
+Mail | *string* | E-Mail
+Name | *string* | Name
+Age | *uint* | Age of the user
+
+###### Response Body
+Name | Type | Description
+--- | --- | ---
+Status | *int* | Status
+Token | *string* | Auth token for the session
+
+#### Login
+##### [POST] /auth/
+###### Request Body
+Name | Type | Description
+--- | --- | ---
+Mail | *string* | Mail
+Password | *string* | Password
+
+###### Response Body
+Name | Type | Description
+--- | --- | ---
+Status | *int* | Status
+Token | *string* | Auth token for the session
+
+### Happimeter
+#### Post Data
+##### [POST] /happiness/
+###### Request Body
+Name | Type | Description
+--- | --- | ---
+Token | *string* | Auth token that identifies the user
+Happiness | *uint* | Happiness Likert Scale
+WhoHaveYouBeenWith | *uint* | Enum that indicates who has the user been with
+DidYouDoSports | *boolean* | Indicates whether the user did any sports activity
+
+###### Response Body
+Name | Type | Description
+--- | --- | ---
+Status | *int* | Status
+
+### Sensor
+#### Post Data
+##### [POST] /sensor/
+###### Request Body
+Name | Type | Description
+--- | --- | ---
+Token | *string* | Auth token that identifies the user
+Timestamp | *DateTime* | The DateTime this datasheet is associated with
+Steps | *uint* | The number of steps
+AvgBPM | *uint* | Average Heart Rate in BPM
+MinBPM | *uint* | Minimum Heart Rate in BPM
+MaxBPM | *uint* | Maximum Heart Rate in BPM
+AvgLightLevel | *uint* | The average ambient light level
+Activity | *uint* | The current activity the user is doing
+RestingKCalories | *uint* | The burned kilo calories during rest
+SleepSeconds | *uint* | The number of seconds the user was sleeping
+SleepRestfulSeconds | *uint* | The number of seconds the user was deeply sleeping
+ActiveSeconds | *uint* | The number of seconds the user was active
+ActiveKCalories | *uint* | The burned kilo calories during activity
+WalkedDistanceInMeters | *uint* | The number of meteres the user walked
+PositionLat | *Decimal(9,6)* | Current lat position of the user (GPS)
+PositionLon | *Decimal(9,6)* | Current lon position of the user (GPS)
+
+###### Response Body
+Name | Type | Description
+--- | --- | ---
+Status | *int* | Status
