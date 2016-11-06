@@ -30,7 +30,7 @@ A table that stores auth sessions and their assocations to the user.
 
 Name | Type | Description
 --- | --- | ---
-ID | *uint* | Unique ID of the user (auto increment)
+ID | *uint* | Unique ID of the auth entry (auto increment)
 UserID | *uint* | ID of the user
 Token | *string* | Random GUID for the session
 Created | *DateTime* | DateTime when the session was created
