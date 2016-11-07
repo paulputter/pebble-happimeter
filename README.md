@@ -18,9 +18,11 @@ Name | Type | Description
 ID | *uint* | Unique ID of the user (auto increment)
 DeviceID | *string* | Unique device ID
 Mail | *string* | Unique mail
+Password | *string* | Password of the user (Encrypted/Hashed)
 Name | *string* | Name
 Age | *uint* | Age of the user
-Password | *string* | Password of the user (Encrypted/Hashed)
+Weight | *double* | Weight in kg of the user
+Sportiness | *uint* | Sportiness of the user (low, medium, high)
 Avatar | *string* |URL to the users avatar/picture
 SignupAt | *DateTime* | DateTime when the user was created
 LastLogin | *DateTime* | Last time the user logged in
