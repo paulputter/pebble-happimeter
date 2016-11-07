@@ -1,9 +1,27 @@
 #include <pebble.h>
+#define SOURCE_FOREGROUND 0
+#define SOURCE_BACKGROUND 1
 
 static Window *s_window;
 static TextLayer *s_text_layer;
 
+static void worker_message_handler(uint16_t type, AppWorkerMessage *message) {
+  APP_LOG(APP_LOG_LEVEL_INFO, "Got a message");
+  if(type == SOURCE_BACKGROUND) {
+    
+    // Get the data, only if it was sent from the background
+    int hour = message->data0;
+    int data_type = message->data1;
+    int data_value = message->data2;
+    
+    APP_LOG(APP_LOG_LEVEL_INFO, "Got hour from the worker: %d", hour);
+  }
+}
+
 static void init(void) {
+  // Read the integer value
+  int lastSensorSent = persist_read_int(12);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Last value was %d", lastSensorSent);
   AppWorkerResult app_worker_result = app_worker_launch();
   APP_LOG(APP_LOG_LEVEL_DEBUG, "App worker launched with result %d", app_worker_result);
   
@@ -16,7 +34,7 @@ static void init(void) {
 	
   // Create a text layer and set the text
 	s_text_layer = text_layer_create(bounds);
-	text_layer_set_text(s_text_layer, "Hi! This app is going to send sensor data once per day...");
+	text_layer_set_text(s_text_layer, "Hi! This is the Happimeter data collector..");
   
   // Set the font and text alignment
 	text_layer_set_font(s_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
@@ -30,6 +48,8 @@ static void init(void) {
 
 	// Push the window, setting the window animation to 'true'
 	window_stack_push(s_window, true);
+  
+  app_worker_message_subscribe(worker_message_handler);
 }
 
 static void deinit(void) {
