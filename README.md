@@ -132,12 +132,7 @@ MinBPM | *uint* | Minimum Heart Rate in BPM
 MaxBPM | *uint* | Maximum Heart Rate in BPM
 AvgLightLevel | *uint* | The average ambient light level
 Activity | *uint* | The current activity the user is doing
-RestingKCalories | *uint* | The burned kilo calories during rest
 SleepSeconds | *uint* | The number of seconds the user was sleeping
-SleepRestfulSeconds | *uint* | The number of seconds the user was deeply sleeping
-ActiveSeconds | *uint* | The number of seconds the user was active
-ActiveKCalories | *uint* | The burned kilo calories during activity
-WalkedDistanceInMeters | *uint* | The number of meteres the user walked
 PositionLat | *Decimal(9,6)* | Current lat position of the user (GPS)
 PositionLon | *Decimal(9,6)* | Current lon position of the user (GPS)
 
