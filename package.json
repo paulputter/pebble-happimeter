@@ -1,10 +1,13 @@
 {
-    "author": "joscha",
+    "author": "CoinGroup9",
     "dependencies": {},
     "keywords": [],
-    "name": "weather-app",
+    "name": "happimeter",
     "pebble": {
-        "displayName": "Weather App",
+        "capabilities": [
+            "health"
+        ],
+        "displayName": "Happimeter",
         "enableMultiJS": false,
         "messageKeys": [
             "testkey"
@@ -12,6 +15,18 @@
         "projectType": "native",
         "resources": {
             "media": [
+                {
+                    "file": "images/mediumhappy.png",
+                    "name": "MEDIUMHAPPY",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/happy_smiley.png",
+                    "name": "HAPPY",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
                 {
                     "file": "images/tick.png",
                     "name": "TICK",
@@ -42,9 +57,7 @@
         "targetPlatforms": [
             "aplite",
             "basalt",
-            "chalk",
-            "diorite",
-            "emery"
+            "chalk"
         ],
         "uuid": "3808bef8-6b6f-4478-aec0-0649e99c5bb7",
         "watchapp": {

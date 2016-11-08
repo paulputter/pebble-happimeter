@@ -6,7 +6,7 @@ MenuLayer *whoyouwithMenuLayer;
 
 
 uint16_t select_get_num_sections_callback(MenuLayer *menu_layer, void *data) {
-  return 0;
+  return 1;
 }
 
 uint16_t select_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {
@@ -53,16 +53,17 @@ void select_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex 
             break;
         }
     
-        break;
+       break;
       
     }
 }
 
-
 void select_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
+   window_stack_pop_all(true);
 }
 
 void select_menu_layer(Window *window) {
+  
 	Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
 
@@ -99,6 +100,7 @@ void whoyouwith_window_create(){
 
 void whoyouwith_window_destroy(){
   window_destroy(whoyouwithWindow);
+  
 }
 
 Window *whoyouwith_window_get_window(){
