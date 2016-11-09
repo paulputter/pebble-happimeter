@@ -11,13 +11,11 @@ static ActionBarLayer *s_action_bar_layer;
 
 static GBitmap *s_icon_bitmap, *s_tick_bitmap, *s_cross_bitmap;
 
-void up_single_click_handler(ClickRecognizerRef recognizer, void *context)
-{
+void up_single_click_handler(ClickRecognizerRef recognizer, void *context){
  window_stack_push(whoyouwith_window_get_window(), true);
 }
 
-void down_single_click_handler(ClickRecognizerRef recognizer, void *context)
-{
+void down_single_click_handler(ClickRecognizerRef recognizer, void *context){
  window_stack_push(whoyouwith_window_get_window(), true);
 }
 
