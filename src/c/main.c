@@ -5,11 +5,6 @@
 #include "whoyouwith_window.h"
 #include "wakeup.h"
 
-// Timer to see how long you can see the main window
-void launch_main_window (){
-  window_stack_push(main_window_get_window(), true);
-}
-
 static void init() {
   wakeup_window_create();
   splash_window_create();
@@ -18,9 +13,6 @@ static void init() {
   main_window_create();
   
  window_stack_push(wakeup_window_get_window(), true);
-  
-    window_stack_push(splash_window_get_window(), true);
- app_timer_register(2000, launch_main_window, NULL);
 
 }
 
@@ -32,12 +24,6 @@ static void deinit() {
     wakeup_window_destroy();
 
 }
-
-
-
-//////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////
 
 int main(void) {
   init();

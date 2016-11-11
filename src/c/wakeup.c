@@ -14,24 +14,22 @@ static ActionBarLayer *s_action_bar_layer;
 
 static GBitmap *s_tick_bitmap, *s_cross_bitmap;
 
-
-
-
-
-// Click action
-static void wakeup_handler(WakeupId id, int32_t reason) { 
-  window_stack_push(wakeupWindow , true);
-  vibes_double_pulse();
+void launch_main_window2 (){
+  window_stack_push(main_window_get_window(), true);
 }
-void wakeup_up_single_click_handler(ClickRecognizerRef recognizer, void *context){
-   window_destroy(wakeupWindow);
 
+ // A wakeup event has occurred while the app was already open
+static void wakeup_handler(WakeupId id, int32_t reason) { 
+}
+
+void wakeup_up_single_click_handler(ClickRecognizerRef recognizer, void *context){
+   window_stack_push(splash_window_get_window(), true);
+   app_timer_register(2000, launch_main_window2, NULL);
 }
 
 void wakeup_down_single_click_handler(ClickRecognizerRef recognizer, void *context){
- window_stack_push(splash_window_get_window(), true);
+  window_stack_pop_all(true);
 }
-
 
 
 //void tick_config_provider(void *context) {
@@ -48,43 +46,48 @@ static void wakeup(){
    // Next occuring (day/hour/minutes)
   printf("wir sind in der wakeupfunktion");
 
-  time_t timestamp_1 = clock_to_timestamp(TODAY, 15, 18);
-  //time_t timestamp_2 = clock_to_timestamp(TODAY, 13, 00);
-  //time_t timestamp_3 = clock_to_timestamp(TODAY, 17, 00);
-  //time_t timestamp_4 = clock_to_timestamp(TODAY, 21, 00);
+  time_t timestamp_1 = clock_to_timestamp(TODAY, 9, 00);
+  time_t timestamp_2 = clock_to_timestamp(TODAY, 13, 00);
+  time_t timestamp_3 = clock_to_timestamp(TODAY, 17, 00);
+  time_t timestamp_4 = clock_to_timestamp(TODAY, 21, 00);
 
   // Choose a 'cookie' value representing the reason for the wakeup
-  const int cookie = 0;
+  //const int cookie = 0;
 
   // If true, the user will be notified if they missed the wakeup 
   // (i.e. their watch was off)
   const bool notify_if_missed = true;
-
+  
+  //SUPERWICHTIG, // Cancel all wakeups
+  wakeup_cancel_all();
+  
   // Schedule wakeup event
-  WakeupId id_1 = wakeup_schedule(timestamp_1, cookie, notify_if_missed);
-  //WakeupId id_2 = wakeup_schedule(timestamp_2, cookie, notify_if_missed);
-  //WakeupId id_3 = wakeup_schedule(timestamp_3, cookie, notify_if_missed);
-  //WakeupId id_4 = wakeup_schedule(timestamp_4, cookie, notify_if_missed);
+  WakeupId id_1 = wakeup_schedule(timestamp_1 , 1 , notify_if_missed);
+  WakeupId id_2 = wakeup_schedule(timestamp_2 , 2 , notify_if_missed);
+  WakeupId id_3 = wakeup_schedule(timestamp_3 , 3 , notify_if_missed);
+  WakeupId id_4 = wakeup_schedule(timestamp_4 , 4 , notify_if_missed);
+  
   printf("scheduled!");
+  
   // Check the scheduling was successful
-   if(id_1 >= 0){
+   if(id_1 >= 0 && id_2 >= 0 && id_3 >=0 && id_4 >= 0){
      // Persist the ID so that a future launch can query it
+     printf("id is scheduled!");
      const int wakeup_id_key = 43;
      persist_write_int(wakeup_id_key, id_1);
    }
   
   // Is the wakeup still scheduled?
-if(wakeup_query(id_1, &timestamp_1)==0) {
+if(wakeup_query(id_1, &timestamp_1)) {
   // Get the time remaining
   int seconds_remaining = timestamp_1 - time(NULL);
-  printf("still scheduled?\n");
   APP_LOG(APP_LOG_LEVEL_INFO, "%d seconds until wakeup", seconds_remaining);
 }
 }
 
 static void wakeup_window_load(Window *window) {
 
-   Layer *window_layer = window_get_root_layer(window);
+  Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
   
 
@@ -123,27 +126,27 @@ void wakeup_window_create() {
     wakeup_get_launch_event(&id, &reason);
   }
   
-  wakeup();
-    // Subscribe to wakeup service
+  
+  // Subscribe to wakeup service
   
   wakeup_service_subscribe(wakeup_handler);
-  
-  //Layer *window_layer = window_get_root_layer(wakeupWindow);
   
   wakeupWindow = window_create();
     window_set_window_handlers(wakeupWindow, (WindowHandlers) {
         .load = wakeup_window_load,
         .unload =wakeup_window_unload,
     });
-  //s_text_layer = text_layer_create(layer_get_bounds(window_layer));
   
   window_stack_push(wakeupWindow , true);
   
+  //Vibration
+  vibes_double_pulse();
+  
+  wakeup();
 }
 
 void wakeup_window_destroy() {
   window_destroy(wakeupWindow);
-  //text_layer_destroy(s_text_layer);
   action_bar_layer_destroy(s_action_layer);
 }
 
