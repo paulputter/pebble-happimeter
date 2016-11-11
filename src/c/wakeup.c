@@ -5,8 +5,6 @@
 
 
 Window *wakeupWindow;
-//TextLayer *s_text_layer;
-//static GBitmap *ticktick;
 static ActionBarLayer *s_action_layer;
 static TextLayer *s_label_layer;
 static ActionBarLayer *s_action_bar_layer;
@@ -19,7 +17,8 @@ void launch_main_window2 (){
 }
 
  // A wakeup event has occurred while the app was already open
-static void wakeup_handler(WakeupId id, int32_t reason) { 
+static void wakeup_handler(WakeupId id, int32_t reason) {
+  window_stack_push(wakeupWindow , true);
 }
 
 void wakeup_up_single_click_handler(ClickRecognizerRef recognizer, void *context){
