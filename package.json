@@ -1,13 +1,10 @@
 {
-    "author": "CoinGroup9",
+    "author": "joscha",
     "dependencies": {},
     "keywords": [],
-    "name": "happimeter",
+    "name": "weather-app",
     "pebble": {
-        "capabilities": [
-            "health"
-        ],
-        "displayName": "Happimeter",
+        "displayName": "Weather App",
         "enableMultiJS": false,
         "messageKeys": [
             "testkey"
@@ -16,26 +13,44 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/Unhappy_Smiley",
+                    "name": "Unhappy_Smiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Normal_Smiley",
+                    "name": "Normal_Smiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Happy_Smiley",
+                    "name": "Happy_Smiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Very_Happy_Smiley",
+                    "name": "Very_Happy_Smiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Very_Unhappy_Smiley",
+                    "name": "Very_Unhappy_Smiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/tick.png",
                     "name": "TICK",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
                 {
-                    "file": "images/mediumhappy.png",
-                    "name": "MEDIUMHAPPY",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
                     "file": "images/main_smily.png",
                     "name": "IMAGE_SPLASH",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/happy_smiley.png",
-                    "name": "HAPPY",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
@@ -57,7 +72,9 @@
         "targetPlatforms": [
             "aplite",
             "basalt",
-            "chalk"
+            "chalk",
+            "diorite",
+            "emery"
         ],
         "uuid": "3808bef8-6b6f-4478-aec0-0649e99c5bb7",
         "watchapp": {
