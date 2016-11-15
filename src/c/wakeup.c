@@ -57,7 +57,7 @@ static void wakeup(){
   // (i.e. their watch was off)
   const bool notify_if_missed = true;
   
-  //SUPERWICHTIG, // Cancel all wakeups
+  //Really IMPORTANT! // #Deletes all wakeups from the Cache
   wakeup_cancel_all();
   
   // Schedule wakeup event
@@ -72,8 +72,13 @@ static void wakeup(){
    if(id_1 >= 0 && id_2 >= 0 && id_3 >=0 && id_4 >= 0){
      // Persist the ID so that a future launch can query it
      printf("id is scheduled!");
-     const int wakeup_id_key = 43;
-     persist_write_int(wakeup_id_key, id_1);
+     // What does the wakeup_id_key do exactly?
+     // const int wakeup_id_key = 43;
+     //persist_write_int(wakeup_id_key, id_1);
+     //persist_write_int(wakeup_id_key, id_2);
+     //persist_write_int(wakeup_id_key, id_3);
+     //persist_write_int(wakeup_id_key, id_4);
+
    }
   
   // Is the wakeup still scheduled?
