@@ -5,11 +5,8 @@
 Window *mainWindow;
 MenuLayer *mainMenuLayer;
 TextLayer *text_layer;
-GBitmap *Very_Happy;
-GBitmap *Happy;
-GBitmap *Normal;
-GBitmap *Unhappy;
-GBitmap *Very_Unhappy;
+static GBitmap *Very_Happy, *Happy, *Normal, *Unhappy, *Very_Unhappy;
+
   
 
 uint16_t menu_get_num_sections_callback(MenuLayer *menu_layer, void *data) {
@@ -39,11 +36,7 @@ void menu_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t 
 }
 
 void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *cell_index, void *data) {
-   Very_Happy = gbitmap_create_with_resource(RESOURCE_ID_Very_Happy_Smiley);
-   Happy = gbitmap_create_with_resource(RESOURCE_ID_Happy_Smiley);
-   Normal = gbitmap_create_with_resource(RESOURCE_ID_Normal_Smiley);
-   Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Unhappy_Smiley);
-  Very_Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Very_Unhappy_Smiley);
+
     switch (cell_index->section){
       case 0:
         switch (cell_index->row){
@@ -103,6 +96,11 @@ void setup_menu_layer(Window *window) {
 
 void main_window_load(Window *window){
  setup_menu_layer(window);
+  Very_Happy = gbitmap_create_with_resource(RESOURCE_ID_Very_Happy_Smiley);
+  Happy = gbitmap_create_with_resource(RESOURCE_ID_Happy_Smiley);
+  Normal = gbitmap_create_with_resource(RESOURCE_ID_Normal_Smiley);
+  Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Unhappy_Smiley);
+  Very_Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Very_Unhappy_Smiley);
 }
 
 void main_window_unload(Window *window){
