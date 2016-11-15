@@ -5,6 +5,12 @@
 Window *mainWindow;
 MenuLayer *mainMenuLayer;
 TextLayer *text_layer;
+GBitmap *Very_Happy;
+GBitmap *Happy;
+GBitmap *Normal;
+GBitmap *Unhappy;
+GBitmap *Very_Unhappy;
+  
 
 uint16_t menu_get_num_sections_callback(MenuLayer *menu_layer, void *data) {
 return 1;
@@ -33,27 +39,33 @@ void menu_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t 
 }
 
 void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *cell_index, void *data) {
+   Very_Happy = gbitmap_create_with_resource(RESOURCE_ID_Very_Happy_Smiley);
+   Happy = gbitmap_create_with_resource(RESOURCE_ID_Happy_Smiley);
+   Normal = gbitmap_create_with_resource(RESOURCE_ID_Normal_Smiley);
+   Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Unhappy_Smiley);
+  Very_Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Very_Unhappy_Smiley);
     switch (cell_index->section){
       case 0:
         switch (cell_index->row){
           case 0:
           // NULL = Smily icon to input
+              menu_cell_basic_draw(ctx, cell_layer, "Very Happy", NULL, Very_Happy);
             break;
            case 1:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, "Happy", NULL, NULL);
+              menu_cell_basic_draw(ctx, cell_layer, "Happy", NULL, Happy);
             break;
            case 2:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, "Normal", NULL, NULL);
+              menu_cell_basic_draw(ctx, cell_layer, "Normal", NULL, Normal);
             break;
            case 3:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, "Unhappy", NULL, NULL);
+              menu_cell_basic_draw(ctx, cell_layer, "Unhappy", NULL, Unhappy);
             break;
            case 4:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, "Really unhappy", NULL, NULL);
+              menu_cell_basic_draw(ctx, cell_layer, "Really unhappy", NULL, Very_Unhappy);
             break;
         }
     
@@ -95,6 +107,12 @@ void main_window_load(Window *window){
 
 void main_window_unload(Window *window){
   menu_layer_destroy(mainMenuLayer);
+  gbitmap_destroy(Very_Happy);
+  gbitmap_destroy(Happy);
+  gbitmap_destroy(Normal);
+  gbitmap_destroy(Unhappy);
+  gbitmap_destroy(Very_Unhappy);
+
 }
 
 void main_window_create(){

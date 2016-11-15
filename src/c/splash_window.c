@@ -4,7 +4,7 @@
 Window *splashWindow;
 GBitmap *splashImage;
 BitmapLayer *splashImageLayer;
-TextLayer *splashImageTitle;
+//TextLayer *splashImageTitle;
 
 
 void splash_window_load(Window *window){
@@ -13,23 +13,23 @@ void splash_window_load(Window *window){
   
   // Loads a png Image from ressources
   splashImage = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_SPLASH);
-  splashImageLayer = bitmap_layer_create(GRect(0,0,144,120));
+  splashImageLayer = bitmap_layer_create(GRect(0,0,144,168));
   bitmap_layer_set_bitmap(splashImageLayer, splashImage);
   bitmap_layer_set_compositing_mode(splashImageLayer, GCompOpSet);
   layer_add_child(window_layer, bitmap_layer_get_layer(splashImageLayer));
   
   // Displays a text message
-  splashImageTitle = text_layer_create(GRect(0,120,144,50));
-  text_layer_set_text(splashImageTitle, "Super Awesome Happimeter");
-  text_layer_set_text_alignment(splashImageTitle, GTextAlignmentCenter);
-  layer_add_child(window_layer, text_layer_get_layer(splashImageTitle));
+// splashImageTitle = text_layer_create(GRect(0,120,144,50));
+// text_layer_set_text(splashImageTitle, "Super Awesome Happimeter");
+//  text_layer_set_text_alignment(splashImageTitle, GTextAlignmentCenter);
+//  layer_add_child(window_layer, text_layer_get_layer(splashImageTitle));
   
 }
 
 void splash_window_unload(Window *window){
   gbitmap_destroy(splashImage);
   bitmap_layer_destroy(splashImageLayer);
-  text_layer_destroy(splashImageTitle);
+ // text_layer_destroy(splashImageTitle);
   
 }
 

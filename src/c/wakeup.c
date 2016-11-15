@@ -23,7 +23,7 @@ static void wakeup_handler(WakeupId id, int32_t reason) {
 
 void wakeup_up_single_click_handler(ClickRecognizerRef recognizer, void *context){
    window_stack_push(splash_window_get_window(), true);
-   app_timer_register(2000, launch_main_window2, NULL);
+   app_timer_register(3000, launch_main_window2, NULL);
 }
 
 void wakeup_down_single_click_handler(ClickRecognizerRef recognizer, void *context){
