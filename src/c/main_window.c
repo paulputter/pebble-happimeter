@@ -1,16 +1,10 @@
 #include <pebble.h>
 #include "main_window.h"
 #include "sportquestion_window.h"
-#include "whoyouwith_window.h"
 
 Window *mainWindow;
 MenuLayer *mainMenuLayer;
 TextLayer *text_layer;
-GBitmap *VeryHappySmiley;
-GBitmap *HappySmiley;
-GBitmap *NormalSmiley;
-GBitmap *UnhappySmiley;
-GBitmap *VeryUnhappySmiley;
 
 uint16_t menu_get_num_sections_callback(MenuLayer *menu_layer, void *data) {
 return 1;
@@ -33,48 +27,40 @@ void menu_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t 
     switch(section_index){
       
       case 0:
-        menu_cell_basic_header_draw(ctx, cell_layer, "How do you feel?");
+        menu_cell_basic_header_draw(ctx, cell_layer, "Moods");
       break;
     }
 }
 
 void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *cell_index, void *data) {
-   VeryHappySmiley = gbitmap_create_with_resource(RESOURCE_ID_Very_Happy_Smiley);
-   HappySmiley = gbitmap_create_with_resource(RESOURCE_ID_Happy_Smiley);
-   NormalSmiley = gbitmap_create_with_resource(RESOURCE_ID_Normal_Smiley);
-   UnhappySmiley = gbitmap_create_with_resource(RESOURCE_ID_Unhappy_Smiley);
-   VeryUnhappySmiley = gbitmap_create_with_resource(RESOURCE_ID_Very_Unhappy_Smiley);
     switch (cell_index->section){
       case 0:
         switch (cell_index->row){
           case 0:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, "Really happy", NULL, VeryHappySmiley);
             break;
            case 1:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, "Happy", NULL, HappySmiley);
+              menu_cell_basic_draw(ctx, cell_layer, "Happy", NULL, NULL);
             break;
            case 2:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, "Normal", NULL, NormalSmiley);
+              menu_cell_basic_draw(ctx, cell_layer, "Normal", NULL, NULL);
             break;
            case 3:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, "Unhappy", NULL, UnhappySmiley);
+              menu_cell_basic_draw(ctx, cell_layer, "Unhappy", NULL, NULL);
             break;
            case 4:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, "Very Unhappy", NULL, VeryUnhappySmiley);
+              menu_cell_basic_draw(ctx, cell_layer, "Really unhappy", NULL, NULL);
             break;
         }
     
-         break;
+        break;
       
     }
 }
-
-
 
 // Detect when somebody hits the select button
 void menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
@@ -85,8 +71,9 @@ void menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *da
 
 void setup_menu_layer(Window *window) {
 	Layer *window_layer = window_get_root_layer(window);
+  GRect bounds = layer_get_bounds(window_layer);
 
-    mainMenuLayer = menu_layer_create(GRect(0, 0, 144, 168));
+    mainMenuLayer = menu_layer_create(bounds);
     menu_layer_set_callbacks(mainMenuLayer, NULL, (MenuLayerCallbacks){
         .get_num_sections = menu_get_num_sections_callback,
         .get_num_rows = menu_get_num_rows_callback,
@@ -123,12 +110,6 @@ void main_window_create(){
 
 void main_window_destroy(){
   window_destroy(mainWindow);
-  
-   gbitmap_destroy(VeryHappySmiley);
-   gbitmap_destroy(HappySmiley);
-   gbitmap_destroy(NormalSmiley);
-   gbitmap_destroy(UnhappySmiley);
-   gbitmap_destroy(VeryUnhappySmiley);
 }
 
 Window *main_window_get_window(){
