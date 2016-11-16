@@ -135,6 +135,7 @@ if(wakeup_query(id_1, &timestamp_1)) {
 static void wakeup_window_load(Window *window) {
 
   Layer *window_layer = window_get_root_layer(window);
+  window_set_background_color(window, GColorGreen);
   GRect bounds = layer_get_bounds(window_layer);
   
 
