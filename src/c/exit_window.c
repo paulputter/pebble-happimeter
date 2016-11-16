@@ -1,0 +1,91 @@
+#include <pebble.h>
+#include "exit_window.h"
+#include "whoyouwith_window.h"
+#include "sportquestion_window.h"
+#include "main_window.h"
+#include "whoyouwith_window.h"
+
+Window *exitWindow;
+MenuLayer *exitMenuLayer;
+static TextLayer *s_label_layer;
+static BitmapLayer *s_icon_layer;
+static ActionBarLayer *s_action_bar_layer;
+
+
+static GBitmap *s_icon_bitmap, *s_tick_bitmap, *s_cross_bitmap;
+
+void exit_up_single_click_handler(ClickRecognizerRef recognizer, void *context){
+  window_stack_pop_all(true);
+}
+
+void exit_down_single_click_handler(ClickRecognizerRef recognizer, void *context){
+ window_stack_pop(true);
+}
+
+void exit_click_config_provider(void *context) {
+  window_single_click_subscribe(BUTTON_ID_UP, (ClickHandler)exit_up_single_click_handler);
+  window_single_click_subscribe(BUTTON_ID_DOWN, (ClickHandler) exit_down_single_click_handler);
+}
+
+void exit_window_load(Window *window){
+  
+ Layer *window_layer = window_get_root_layer(window);
+  GRect bounds = layer_get_bounds(window_layer);
+  
+
+  const GEdgeInsets label_insets = {.top = 10, .right = ACTION_BAR_WIDTH+ACTION_BAR_WIDTH / 2, .left = ACTION_BAR_WIDTH / 2};
+  s_label_layer = text_layer_create(grect_inset(bounds, label_insets));
+  text_layer_set_text(s_label_layer, EXIT_WINDOW_MESSAGE);
+  text_layer_set_background_color(s_label_layer, GColorClear);
+  text_layer_set_text_alignment(s_label_layer, GTextAlignmentCenter);
+  text_layer_set_font(s_label_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+  layer_add_child(window_layer, text_layer_get_layer(s_label_layer));
+
+  s_tick_bitmap = gbitmap_create_with_resource(RESOURCE_ID_TICK);
+  s_cross_bitmap = gbitmap_create_with_resource(RESOURCE_ID_CROSS);
+
+  s_action_bar_layer = action_bar_layer_create();
+  action_bar_layer_set_icon(s_action_bar_layer, BUTTON_ID_UP, s_tick_bitmap);
+  action_bar_layer_set_icon(s_action_bar_layer, BUTTON_ID_DOWN, s_cross_bitmap);
+  action_bar_layer_add_to_window(s_action_bar_layer, window);
+  
+  // Set the click config provider:
+  action_bar_layer_set_click_config_provider(s_action_bar_layer, exit_click_config_provider);
+}
+
+
+
+void exit_window_unload(Window *window){
+  text_layer_destroy(s_label_layer);
+  action_bar_layer_destroy(s_action_bar_layer);
+  bitmap_layer_destroy(s_icon_layer);
+
+  gbitmap_destroy(s_icon_bitmap);
+  gbitmap_destroy(s_tick_bitmap);
+  gbitmap_destroy(s_cross_bitmap);
+
+  window_destroy(window);
+exitWindow = NULL;
+}
+
+
+void exit_window_create() {
+  if(!exitWindow) {
+   exitWindow = window_create();
+    window_set_background_color(exitWindow, PBL_IF_COLOR_ELSE (GColorWhite, GColorWhite));
+    window_set_window_handlers(exitWindow, (WindowHandlers) {
+        .load = exit_window_load,
+        .unload =exit_window_unload,
+    });
+  }
+  window_stack_push(exitWindow, true);
+}
+
+
+void exit_window_destroy(){
+  window_destroy(exitWindow);
+}
+
+Window *exit_window_get_window(){
+  return exitWindow;
+}

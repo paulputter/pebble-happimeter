@@ -1,5 +1,7 @@
 #include <pebble.h>
 #include "whoyouwith_window.h"
+#include "exit_window.h"
+#include "main.h"
 
 Window *whoyouwithWindow;
 MenuLayer *whoyouwithMenuLayer;
@@ -78,6 +80,8 @@ void select_menu_layer(Window *window) {
     });
 
     menu_layer_set_click_config_onto_window(whoyouwithMenuLayer, window);
+     // overwrite back button
+  force_back_button(window, whoyouwithMenuLayer);
     layer_add_child(window_layer, menu_layer_get_layer(whoyouwithMenuLayer));
 }
 

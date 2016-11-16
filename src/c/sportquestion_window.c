@@ -1,6 +1,7 @@
 #include <pebble.h>
 #include "sportquestion_window.h"
 #include "whoyouwith_window.h"
+#include "exit_window.h"
 
 Window *sportquestionWindow;
 MenuLayer *sportquestionMenuLayer;
@@ -19,9 +20,15 @@ void down_single_click_handler(ClickRecognizerRef recognizer, void *context){
  window_stack_push(whoyouwith_window_get_window(), true);
 }
 
+void back_single_click_handler(ClickRecognizerRef recognizer, void *context){
+  window_stack_push(exit_window_get_window(), true);
+}
+
 void click_config_provider(void *context) {
   window_single_click_subscribe(BUTTON_ID_UP, (ClickHandler)up_single_click_handler);
   window_single_click_subscribe(BUTTON_ID_DOWN, (ClickHandler) down_single_click_handler);
+  window_single_click_subscribe(BUTTON_ID_BACK, (ClickHandler) back_single_click_handler);
+
 }
 
 void sportquestion_window_load(Window *window){

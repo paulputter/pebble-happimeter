@@ -1,6 +1,8 @@
 #include <pebble.h>
 #include "main_window.h"
 #include "sportquestion_window.h"
+#include "exit_window.h"
+#include "main.h"
 
 Window *mainWindow;
 MenuLayer *mainMenuLayer;
@@ -89,6 +91,9 @@ void setup_menu_layer(Window *window) {
     });
 
     menu_layer_set_click_config_onto_window(mainMenuLayer, window);
+  
+   // overwrite back button
+  force_back_button(window, mainMenuLayer);
 
     layer_add_child(window_layer, menu_layer_get_layer(mainMenuLayer));
 }
