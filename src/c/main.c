@@ -11,7 +11,8 @@ static void init() {
   whoyouwith_window_create();
   sportquestion_window_create();
   main_window_create();
-  window_stack_push(wakeup_window_get_window(), true);
+  
+ window_stack_push(wakeup_window_get_window(), true);
 
 }
 
@@ -20,7 +21,7 @@ static void deinit() {
   whoyouwith_window_destroy();
   splash_window_destroy();
   main_window_destroy();
-  wakeup_window_destroy();
+    wakeup_window_destroy();
 
 }
 

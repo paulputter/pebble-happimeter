@@ -16,36 +16,6 @@
         "resources": {
             "media": [
                 {
-                    "file": "images/Very_Unhappy_Smiley",
-                    "name": "Very_Unhappy_Smiley",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/Unhappy_Smiley",
-                    "name": "Unhappy_Smiley",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/Normal_Smiley",
-                    "name": "Normal_Smiley",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/Happy_Smiley",
-                    "name": "Happy_Smiley",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/Very_Happy_Smiley",
-                    "name": "Very_Happy_Smiley",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
                     "file": "images/tick.png",
                     "name": "TICK",
                     "targetPlatforms": null,
@@ -78,6 +48,36 @@
                 {
                     "file": "images/confirm.png",
                     "name": "CONFIRM",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Very_Unhappy_Smiley",
+                    "name": "Very_Unhappy_Smiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Very_Happy_Smiley",
+                    "name": "Very_Happy_Smiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Unhappy_Smiley",
+                    "name": "Unhappy_Smiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Normal_Smiley",
+                    "name": "Normal_Smiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Happy_Smiley",
+                    "name": "Happy_Smiley",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 }

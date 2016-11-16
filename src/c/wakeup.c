@@ -12,6 +12,42 @@ static ActionBarLayer *s_action_bar_layer;
 
 static GBitmap *s_tick_bitmap, *s_cross_bitmap;
 
+static void delay_timer (){
+  // Let the timestamp be 1 minutes from now
+const time_t future_timestamp = time(NULL) + (1 * SECONDS_PER_MINUTE);
+
+// Choose a 'cookie' value representing the reason for the wakeup
+const int cookie = 0;
+
+// If true, the user will be notified if they missed the wakeup 
+// (i.e. their watch was off)
+const bool notify_if_missed = true;
+
+//cancel all wakeups
+wakeup_cancel_all();
+
+// Schedule wakeup event
+WakeupId id = wakeup_schedule(future_timestamp, cookie, notify_if_missed);
+
+// Check the scheduling was successful
+if(id >= 0) {
+  // Persist the ID so that a future launch can query it
+  const int wakeup_id_key = 43;
+  persist_write_int(wakeup_id_key, id);
+}
+  
+  // This will be set by wakeup_query()
+time_t wakeup_timestamp = 0;
+
+// Is the wakeup still scheduled?
+if(wakeup_query(id, &wakeup_timestamp)) {
+  // Get the time remaining
+  int seconds_remaining = wakeup_timestamp - time(NULL);
+  APP_LOG(APP_LOG_LEVEL_INFO, "%d seconds until wakeup", seconds_remaining);
+}
+  
+}
+
 void launch_main_window2 (){
   window_stack_push(main_window_get_window(), true);
 }
@@ -30,6 +66,10 @@ void wakeup_down_single_click_handler(ClickRecognizerRef recognizer, void *conte
   window_stack_pop_all(true);
 }
 
+void wakeup_select_single_click_handler(ClickRecognizerRef recognizer, void *context){
+  delay_timer();
+  window_stack_pop_all(true);
+}
 
 //void tick_config_provider(void *context) {
 //  window_single_click_subscribe(BUTTON_ID_SELECT, (ClickHandler)select_single_click_handler);
@@ -38,6 +78,7 @@ void wakeup_down_single_click_handler(ClickRecognizerRef recognizer, void *conte
 void wakeup_click_config_provider(void *context) {
   window_single_click_subscribe(BUTTON_ID_UP, (ClickHandler)wakeup_up_single_click_handler);
   window_single_click_subscribe(BUTTON_ID_DOWN, (ClickHandler) wakeup_down_single_click_handler);
+  window_single_click_subscribe(BUTTON_ID_SELECT, wakeup_select_single_click_handler);
 }
 
 static void wakeup(){
@@ -57,7 +98,7 @@ static void wakeup(){
   // (i.e. their watch was off)
   const bool notify_if_missed = true;
   
-  //Really IMPORTANT! // #Deletes all wakeups from the Cache
+  //SUPERWICHTIG, // Cancel all wakeups
   wakeup_cancel_all();
   
   // Schedule wakeup event
@@ -72,13 +113,8 @@ static void wakeup(){
    if(id_1 >= 0 && id_2 >= 0 && id_3 >=0 && id_4 >= 0){
      // Persist the ID so that a future launch can query it
      printf("id is scheduled!");
-     // What does the wakeup_id_key do exactly?
-     // const int wakeup_id_key = 43;
-     //persist_write_int(wakeup_id_key, id_1);
-     //persist_write_int(wakeup_id_key, id_2);
-     //persist_write_int(wakeup_id_key, id_3);
-     //persist_write_int(wakeup_id_key, id_4);
-
+     const int wakeup_id_key = 43;
+     persist_write_int(wakeup_id_key, id_1);
    }
   
   // Is the wakeup still scheduled?
