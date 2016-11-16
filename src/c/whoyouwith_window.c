@@ -93,11 +93,17 @@ void whoyouwith_window_unload(Window *window){
   menu_layer_destroy(whoyouwithMenuLayer);
 }
 
+// to remember where we were, should we fetch the exit_window
+void whoyouwith_window_appear(Window *window){
+   setNumberOfWindow(3);
+}
+
 void whoyouwith_window_create(){
   whoyouwithWindow = window_create();
   window_set_window_handlers(whoyouwithWindow, (WindowHandlers) {
         .load = whoyouwith_window_load,
         .unload =whoyouwith_window_unload,
+      .appear = whoyouwith_window_appear
     });
   window_stack_push(whoyouwithWindow, true);
 }

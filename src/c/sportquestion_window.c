@@ -21,6 +21,7 @@ void down_single_click_handler(ClickRecognizerRef recognizer, void *context){
 }
 
 void back_single_click_handler(ClickRecognizerRef recognizer, void *context){
+    setNumberOfWindow(2);
   window_stack_push(exit_window_get_window(), true);
 }
 

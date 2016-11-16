@@ -93,7 +93,7 @@ void setup_menu_layer(Window *window) {
     menu_layer_set_click_config_onto_window(mainMenuLayer, window);
   
    // overwrite back button
-  force_back_button(window, mainMenuLayer);
+    force_back_button(window, mainMenuLayer);
 
     layer_add_child(window_layer, menu_layer_get_layer(mainMenuLayer));
 }
@@ -118,13 +118,19 @@ void main_window_unload(Window *window){
 
 }
 
+// to remember where we were, should we fetch the exit_window
+void main_window_appear(Window *window){
+  setNumberOfWindow(1);
+}
+
 void main_window_create(){
   mainWindow = window_create();
   window_set_window_handlers(mainWindow, (WindowHandlers)
                              
     {
        .load = main_window_load,
-       .unload = main_window_unload
+       .unload = main_window_unload,
+      .appear = main_window_appear
     }
   );
 }

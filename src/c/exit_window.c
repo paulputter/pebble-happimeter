@@ -10,6 +10,7 @@ MenuLayer *exitMenuLayer;
 static TextLayer *s_label_layer;
 static BitmapLayer *s_icon_layer;
 static ActionBarLayer *s_action_bar_layer;
+int number = 0;
 
 
 static GBitmap *s_icon_bitmap, *s_tick_bitmap, *s_cross_bitmap;
@@ -18,13 +19,29 @@ void exit_up_single_click_handler(ClickRecognizerRef recognizer, void *context){
   window_stack_pop_all(true);
 }
 
+// going back to the window, where we clicked on the back button
 void exit_down_single_click_handler(ClickRecognizerRef recognizer, void *context){
- window_stack_pop(true);
+  if(number==1){
+   window_stack_push(main_window_get_window(), true);
+  } 
+  if(number ==2){
+    window_stack_push(sportquestion_window_get_window(), true);
+  }
+    if(number ==3){
+    window_stack_push(whoyouwith_window_get_window(), true);
+  }
+  if (number <1 || number >3){
+    window_stack_pop_all(true);
+  }
 }
 
 void exit_click_config_provider(void *context) {
   window_single_click_subscribe(BUTTON_ID_UP, (ClickHandler)exit_up_single_click_handler);
   window_single_click_subscribe(BUTTON_ID_DOWN, (ClickHandler) exit_down_single_click_handler);
+}
+
+void setNumberOfWindow(int n){
+  number = n;
 }
 
 void exit_window_load(Window *window){
