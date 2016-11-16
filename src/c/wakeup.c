@@ -12,6 +12,8 @@ static ActionBarLayer *s_action_bar_layer;
 
 static GBitmap *s_tick_bitmap, *s_cross_bitmap, *s_sleep_bitmap;
 
+
+
 static void delay_timer (){
   // Let the timestamp be 1 minutes from now
 const time_t future_timestamp = time(NULL) + (10 * SECONDS_PER_MINUTE);
@@ -66,6 +68,10 @@ void wakeup_down_single_click_handler(ClickRecognizerRef recognizer, void *conte
   window_stack_pop_all(true);
 }
 
+void wakeup_back_single_click_handler(ClickRecognizerRef recognizer, void *context){
+  window_stack_pop_all(true);
+}
+
 void wakeup_select_single_click_handler(ClickRecognizerRef recognizer, void *context){
   delay_timer();
   window_stack_pop_all(true);
@@ -78,6 +84,7 @@ void wakeup_select_single_click_handler(ClickRecognizerRef recognizer, void *con
 void wakeup_click_config_provider(void *context) {
   window_single_click_subscribe(BUTTON_ID_UP, (ClickHandler)wakeup_up_single_click_handler);
   window_single_click_subscribe(BUTTON_ID_DOWN, (ClickHandler) wakeup_down_single_click_handler);
+  window_single_click_subscribe(BUTTON_ID_BACK, (ClickHandler) wakeup_back_single_click_handler);
   window_single_click_subscribe(BUTTON_ID_SELECT, wakeup_select_single_click_handler);
 }
 
