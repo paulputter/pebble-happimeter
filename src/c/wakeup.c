@@ -10,11 +10,11 @@ static TextLayer *s_label_layer;
 static ActionBarLayer *s_action_bar_layer;
 
 
-static GBitmap *s_tick_bitmap, *s_cross_bitmap;
+static GBitmap *s_tick_bitmap, *s_cross_bitmap, *s_sleep_bitmap;
 
 static void delay_timer (){
   // Let the timestamp be 1 minutes from now
-const time_t future_timestamp = time(NULL) + (1 * SECONDS_PER_MINUTE);
+const time_t future_timestamp = time(NULL) + (10 * SECONDS_PER_MINUTE);
 
 // Choose a 'cookie' value representing the reason for the wakeup
 const int cookie = 0;
@@ -141,10 +141,13 @@ static void wakeup_window_load(Window *window) {
 
   s_tick_bitmap = gbitmap_create_with_resource(RESOURCE_ID_TICK);
   s_cross_bitmap = gbitmap_create_with_resource(RESOURCE_ID_CROSS);
+  s_sleep_bitmap = gbitmap_create_with_resource(RESOURCE_ID_SLEEP);
 
   s_action_bar_layer = action_bar_layer_create();
   action_bar_layer_set_icon(s_action_bar_layer, BUTTON_ID_UP, s_tick_bitmap);
   action_bar_layer_set_icon(s_action_bar_layer, BUTTON_ID_DOWN, s_cross_bitmap);
+  action_bar_layer_set_icon(s_action_bar_layer, BUTTON_ID_SELECT, s_sleep_bitmap);
+  
   action_bar_layer_add_to_window(s_action_bar_layer, window);
   
   // Set the click config provider:

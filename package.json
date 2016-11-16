@@ -16,6 +16,12 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/zzz.png",
+                    "name": "SLEEP",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/tick.png",
                     "name": "TICK",
                     "targetPlatforms": null,
