@@ -8,6 +8,8 @@ Window *mainWindow;
 MenuLayer *mainMenuLayer;
 TextLayer *text_layer;
 static GBitmap *Very_Happy, *Happy, *Normal, *Unhappy, *Very_Unhappy;
+static int16_t menu_header_height(struct MenuLayer *menu, uint16_t section_index, void *callback_context);
+static void menu_draw_header(GContext* ctx, const Layer* cell_layer, uint16_t section_index, void* callback_context);
 
   
 
@@ -24,18 +26,35 @@ uint16_t menu_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_inde
     }
 }
 
-int16_t menu_get_header_height_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {
-    return MENU_CELL_BASIC_HEADER_HEIGHT;
+//int16_t menu_get_header_height_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {
+  //  return MENU_CELL_BASIC_HEADER_HEIGHT;
+//}
+
+static void menu_draw_header(GContext* ctx, const Layer* cell_layer, uint16_t section_index, void* callback_context) {
+   GRect bounds = layer_get_bounds(cell_layer);
+   graphics_context_set_fill_color(ctx, GColorGreen);
+  graphics_fill_rect(ctx,GRect(10,10,bounds.size.w,42),0,GCornerNone);
+
+    graphics_draw_text(ctx, ("Mood"),
+                       fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD),
+                       GRect(0, 5, bounds.size.w, 42), GTextOverflowModeWordWrap,
+                       GTextAlignmentCenter, NULL);
+
 }
 
-void menu_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t section_index, void *data) {
-    switch(section_index){
-      
-      case 0:
-        menu_cell_basic_header_draw(ctx, cell_layer, "Moods");
-      break;
-    }
+int16_t menu_header_height(struct MenuLayer *menu, uint16_t section_index, void *callback_context) {
+  return 42;
+
 }
+
+//void menu_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t section_index, void *data) {
+  //  switch(section_index){
+      
+    //  case 0:
+      //  menu_cell_basic_header_draw(ctx, cell_layer, "Moods");
+      //break;
+    //}
+//}
 
 void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *cell_index, void *data) {
 
@@ -82,13 +101,13 @@ void setup_menu_layer(Window *window) {
   GRect bounds = layer_get_bounds(window_layer);
 
     mainMenuLayer = menu_layer_create(bounds);
-    menu_layer_set_normal_colors(mainMenuLayer, GColorIslamicGreen, GColorBlack);
+    menu_layer_set_normal_colors(mainMenuLayer,  GColorGreen, GColorBlack);
   
     menu_layer_set_callbacks(mainMenuLayer, NULL, (MenuLayerCallbacks){
         .get_num_sections = menu_get_num_sections_callback,
         .get_num_rows = menu_get_num_rows_callback,
-        .get_header_height = menu_get_header_height_callback,
-        .draw_header = menu_draw_header_callback,
+        .get_header_height = menu_header_height,
+        .draw_header = menu_draw_header,
         .draw_row = menu_draw_row_callback,
         .select_click = menu_select_callback
     });

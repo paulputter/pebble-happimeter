@@ -6,7 +6,9 @@
 Window *sportquestionWindow;
 MenuLayer *sportquestionMenuLayer;
 static TextLayer *s_label_layer;
+static TextLayer *s_frame_layer;
 static BitmapLayer *s_icon_layer;
+static BitmapLayer *s_icon2_layer;
 static ActionBarLayer *s_action_bar_layer;
 
 
@@ -38,17 +40,32 @@ void sportquestion_window_load(Window *window){
   GRect bounds = layer_get_bounds(window_layer);
   
    s_icon_bitmap = gbitmap_create_with_resource(RESOURCE_ID_CONFIRM);
-  
-  const GEdgeInsets icon_insets = {.top = 0, .right = 28, .bottom = 90, .left = 14};
+
+  // Background picture
+  const GEdgeInsets icon_insets = {.top = 0, .right = 30, .bottom = 0, .left = 0};
   s_icon_layer = bitmap_layer_create(grect_inset(bounds, icon_insets));
   bitmap_layer_set_bitmap(s_icon_layer, s_icon_bitmap);
   bitmap_layer_set_compositing_mode(s_icon_layer, GCompOpSet);
-layer_add_child(window_layer, bitmap_layer_get_layer(s_icon_layer));
+  layer_add_child(window_layer, bitmap_layer_get_layer(s_icon_layer));
+  
+  // Second background picture (the same picture but with changed position)
+  //const GEdgeInsets icon2_insets = {.top = 0, .right = 0, .bottom = 0, .left = 99};
+  //s_icon2_layer = bitmap_layer_create(grect_inset(bounds, icon2_insets));
+  //bitmap_layer_set_bitmap(s_icon2_layer, s_icon_bitmap);
+  //bitmap_layer_set_compositing_mode(s_icon2_layer, GCompOpSet);
+  //layer_add_child(window_layer, bitmap_layer_get_layer(s_icon2_layer));
+  
+  const GEdgeInsets frame_insets = {.top = 40, .right = ACTION_BAR_WIDTH, .bottom = 40, .left = 0 };
+  s_frame_layer = text_layer_create(grect_inset(bounds, frame_insets));
+  // text_layer_set_text(s_frame_layer, "n");
+  text_layer_set_background_color(s_frame_layer, GColorBlack);
+  layer_add_child(window_layer, text_layer_get_layer(s_frame_layer));
 
-  const GEdgeInsets label_insets = {.top = 60, .right = ACTION_BAR_WIDTH+ACTION_BAR_WIDTH / 2, .left = ACTION_BAR_WIDTH / 2};
+  // The box for the text
+  const GEdgeInsets label_insets = {.top = 45, .right = ACTION_BAR_WIDTH, .bottom = 42, .left = 2 };
   s_label_layer = text_layer_create(grect_inset(bounds, label_insets));
   text_layer_set_text(s_label_layer, SPORTQUESTION_WINDOW_MESSAGE);
-  text_layer_set_background_color(s_label_layer, GColorClear);
+  text_layer_set_background_color(s_label_layer, GColorGreen);
   text_layer_set_text_alignment(s_label_layer, GTextAlignmentCenter);
   text_layer_set_font(s_label_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
   layer_add_child(window_layer, text_layer_get_layer(s_label_layer));
@@ -57,6 +74,7 @@ layer_add_child(window_layer, bitmap_layer_get_layer(s_icon_layer));
   s_cross_bitmap = gbitmap_create_with_resource(RESOURCE_ID_CROSS);
 
   s_action_bar_layer = action_bar_layer_create();
+  action_bar_layer_set_background_color(s_action_bar_layer, GColorBlack);
   action_bar_layer_set_icon(s_action_bar_layer, BUTTON_ID_UP, s_tick_bitmap);
   action_bar_layer_set_icon(s_action_bar_layer, BUTTON_ID_DOWN, s_cross_bitmap);
   action_bar_layer_add_to_window(s_action_bar_layer, window);
