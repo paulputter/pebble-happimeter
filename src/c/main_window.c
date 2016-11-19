@@ -32,10 +32,12 @@ uint16_t menu_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_inde
 
 static void menu_draw_header(GContext* ctx, const Layer* cell_layer, uint16_t section_index, void* callback_context) {
    GRect bounds = layer_get_bounds(cell_layer);
-   graphics_context_set_fill_color(ctx, GColorGreen);
-  graphics_fill_rect(ctx,GRect(10,10,bounds.size.w,42),0,GCornerNone);
-
-    graphics_draw_text(ctx, ("Mood"),
+   graphics_context_set_fill_color(ctx, GColorBlack);
+   graphics_context_set_text_color(ctx, GColorWhite);
+   // draw the box; 3rd and 4th variables: rounding the corners of the box
+   graphics_fill_rect(ctx,GRect(4,4,bounds.size.w-8,42),8,GCornersAll);
+   // text in the box
+   graphics_draw_text(ctx, ("Mood"),
                        fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD),
                        GRect(0, 5, bounds.size.w, 42), GTextOverflowModeWordWrap,
                        GTextAlignmentCenter, NULL);
@@ -101,7 +103,8 @@ void setup_menu_layer(Window *window) {
   GRect bounds = layer_get_bounds(window_layer);
 
     mainMenuLayer = menu_layer_create(bounds);
-    menu_layer_set_normal_colors(mainMenuLayer,  GColorGreen, GColorBlack);
+    menu_layer_set_normal_colors(mainMenuLayer,  GColorBlack, GColorWhite);
+  menu_layer_set_highlight_colors(mainMenuLayer, GColorGreen, GColorWhite);
   
     menu_layer_set_callbacks(mainMenuLayer, NULL, (MenuLayerCallbacks){
         .get_num_sections = menu_get_num_sections_callback,
