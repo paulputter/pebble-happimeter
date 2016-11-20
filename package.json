@@ -1,20 +1,101 @@
 {
-    "author": "joscha",
+    "author": "CoinGroup9",
     "dependencies": {},
     "keywords": [],
-    "name": "weather-app",
+    "name": "happimeter",
     "pebble": {
-        "displayName": "Weather App",
-        "enableMultiJS": false,
+        "capabilities": [
+            "location",
+            "configurable",
+            "health"
+        ],
+        "displayName": "Happimeter",
+        "enableMultiJS": true,
         "messageKeys": [
-            "testkey"
+            "steps",
+            "min_bpm",
+            "max_bpm",
+            "avg_bpm",
+            "avg_light_level",
+            "activity",
+            "sleep",
+            "current_time",
+            "acc_x",
+            "acc_y",
+            "acc_z"
         ],
         "projectType": "native",
         "resources": {
             "media": [
                 {
+                    "file": "images/zzz.png",
+                    "name": "SLEEP",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/tick.png",
+                    "name": "TICK",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/mediumhappy.png",
+                    "name": "MEDIUMHAPPY",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/main_smily.png",
                     "name": "IMAGE_SPLASH",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/happy_smiley.png",
+                    "name": "HAPPY",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/cross.png",
+                    "name": "CROSS",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/confirm.png",
+                    "name": "CONFIRM",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Very_Unhappy_Smiley",
+                    "name": "Very_Unhappy_Smiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Very_Happy_Smiley",
+                    "name": "Very_Happy_Smiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Unhappy_Smiley",
+                    "name": "Unhappy_Smiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Normal_Smiley",
+                    "name": "Normal_Smiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Happy_Smiley",
+                    "name": "Happy_Smiley",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 }
@@ -25,7 +106,6 @@
             "aplite",
             "basalt",
             "chalk",
-            "diorite",
             "emery"
         ],
         "uuid": "3808bef8-6b6f-4478-aec0-0649e99c5bb7",
