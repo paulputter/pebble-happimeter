@@ -188,6 +188,11 @@ void wakeup_window_create() {
         .unload =wakeup_window_unload,
     });
   
+  window_stack_push(wakeupWindow , true);
+  
+  //Vibration
+  vibes_double_pulse();
+  
   wakeup();
 }
 

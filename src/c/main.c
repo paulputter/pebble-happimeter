@@ -5,6 +5,10 @@
 #include "whoyouwith_window.h"
 #include "wakeup.h"
 #include "exit_window.h"
+#include "src/c/uploader.h"
+
+  //create array for saving the answers
+  int userAnswers[3];
 
 // Define what you want to do when the back button is pressed
 void back_button_handler(ClickRecognizerRef recognizer, void *context) {
@@ -29,20 +33,29 @@ void force_back_button(Window *window, MenuLayer *menu_layer) {
   window_set_click_config_provider_with_context(window, new_ccp, menu_layer);
 }
 
+// Save the answer given by the user
+void setAnswer(int questionNumber, int answer){
+  userAnswers[questionNumber]=answer;
+}
+
 
 static void init() {
+  // start the background worker
+  AppWorkerResult app_worker_result = app_worker_launch();
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "App worker launched with result %d", app_worker_result);
+  
+  // subscribe to background worker messages
+  app_worker_message_subscribe(worker_message_handler);
+  
+  // init UI stuff
   wakeup_window_create();
-   exit_window_create();
+  exit_window_create();
   splash_window_create();
   whoyouwith_window_create();
   sportquestion_window_create();
   main_window_create();
 
-  //actual_time in minutes
-  const time_t actual_time = time(NULL)/60;
-  
-
-  if(launch_reason() == APP_LAUNCH_WAKEUP) {
+    if(launch_reason() == APP_LAUNCH_WAKEUP) {
     //Vibration
     vibes_double_pulse();
     window_stack_push(wakeup_window_get_window(), true);
@@ -51,10 +64,10 @@ static void init() {
   } else {
     window_stack_push(main_window_get_window(), true);
   }
-  
- 
 
 }
+
+
 
 static void deinit() {
   sportquestion_window_destroy();
