@@ -35,17 +35,18 @@ static void menu_draw_header(GContext* ctx, const Layer* cell_layer, uint16_t se
    graphics_context_set_fill_color(ctx, GColorBlack);
    graphics_context_set_text_color(ctx, GColorWhite);
    // draw the box; 3rd and 4th variables: rounding the corners of the box
-   graphics_fill_rect(ctx,GRect(4,4,bounds.size.w-8,42),8,GCornersAll);
+   graphics_fill_rect(ctx,GRect(4,4,bounds.size.w-8,80),8,GCornersAll);
    // text in the box
-   graphics_draw_text(ctx, ("Mood"),
+   graphics_draw_text(ctx, ("How are you feeling?"),
                        fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD),
-                       GRect(0, 5, bounds.size.w, 42), GTextOverflowModeWordWrap,
+                       GRect(0, 0, bounds.size.w, 80), GTextOverflowModeWordWrap,
                        GTextAlignmentCenter, NULL);
 
 }
 
+// Size of the header box
 int16_t menu_header_height(struct MenuLayer *menu, uint16_t section_index, void *callback_context) {
-  return 42;
+  return 65;
 
 }
 
@@ -116,6 +117,8 @@ void setup_menu_layer(Window *window) {
     });
 
     menu_layer_set_click_config_onto_window(mainMenuLayer, window);
+  
+  //menu_layer_set_center_focused(mainMenuLayer, true);
   
    // overwrite back button
     force_back_button(window, mainMenuLayer);
