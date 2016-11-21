@@ -7,6 +7,9 @@
 #include "exit_window.h"
 #include "src/c/uploader.h"
 
+  //create array for saving the answers
+  int userAnswers[3];
+
 // Define what you want to do when the back button is pressed
 void back_button_handler(ClickRecognizerRef recognizer, void *context) {
   window_stack_push(exit_window_get_window(), true);
@@ -30,6 +33,11 @@ void force_back_button(Window *window, MenuLayer *menu_layer) {
   window_set_click_config_provider_with_context(window, new_ccp, menu_layer);
 }
 
+// Save the answer given by the user
+void setAnswer(int questionNumber, int answer){
+  userAnswers[questionNumber]=answer;
+}
+
 
 static void init() {
   // start the background worker
@@ -46,10 +54,13 @@ static void init() {
   whoyouwith_window_create();
   sportquestion_window_create();
   main_window_create();
+
   
  window_stack_push(wakeup_window_get_window(), true);
 
 }
+
+
 
 static void deinit() {
   sportquestion_window_destroy();

@@ -2,6 +2,7 @@
 #include "sportquestion_window.h"
 #include "whoyouwith_window.h"
 #include "exit_window.h"
+#include "main.h"
 
 Window *sportquestionWindow;
 MenuLayer *sportquestionMenuLayer;
@@ -15,10 +16,14 @@ static ActionBarLayer *s_action_bar_layer;
 static GBitmap *s_icon_bitmap, *s_tick_bitmap, *s_cross_bitmap;
 
 void up_single_click_handler(ClickRecognizerRef recognizer, void *context){
+  // save the given answer: question 2, answer 1 (=yes)
+  setAnswer(2,1);
  window_stack_push(whoyouwith_window_get_window(), true);
 }
 
 void down_single_click_handler(ClickRecognizerRef recognizer, void *context){
+   // save the given answer: question 3, answer 0 (=no)
+  setAnswer(2,0);
  window_stack_push(whoyouwith_window_get_window(), true);
 }
 
