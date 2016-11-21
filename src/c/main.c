@@ -38,6 +38,10 @@ void setAnswer(int questionNumber, int answer){
   userAnswers[questionNumber]=answer;
 }
 
+void launch_main_window3 (){
+  window_stack_push(main_window_get_window(), true);
+}
+
 
 static void init() {
   // start the background worker
@@ -62,7 +66,9 @@ static void init() {
     
     //else the normal main window pops up
   } else {
-    window_stack_push(main_window_get_window(), true);
+          window_stack_push(splash_window_get_window(), true);
+   app_timer_register(3000, launch_main_window3, NULL);
+  
   }
 
 }

@@ -38,7 +38,7 @@ static void menu_draw_header(GContext* ctx, const Layer* cell_layer, uint16_t se
    graphics_fill_rect(ctx,GRect(4,4,bounds.size.w-8,80),8,GCornersAll);
    // text in the box
    graphics_draw_text(ctx, ("How are you feeling?"),
-                       fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD),
+                       fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD),
                        GRect(0, 0, bounds.size.w, 80), GTextOverflowModeWordWrap,
                        GTextAlignmentCenter, NULL);
 

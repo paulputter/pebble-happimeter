@@ -9,7 +9,7 @@ MenuLayer *sportquestionMenuLayer;
 static TextLayer *s_label_layer;
 static TextLayer *s_frame_layer;
 static BitmapLayer *s_icon_layer;
-static BitmapLayer *s_icon2_layer;
+
 static ActionBarLayer *s_action_bar_layer;
 
 
