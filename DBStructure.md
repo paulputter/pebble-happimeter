@@ -80,3 +80,7 @@ ActiveKCalories | *uint* | The burned kilo calories during activity
 WalkedDistanceInMeters | *uint* | The number of meteres the user walked
 PositionLat | *Decimal(9,6)* | Current lat position of the user (GPS)
 PositionLon | *Decimal(9,6)* | Current lon position of the user (GPS)
+Altitude | *Decimal(12,6)* | Altitude
+Acc_x | *int* | Accelerometer data on x-axis.
+Acc_y | *int* | Accelerometer data on y-axis.
+Acc_z | *int* | Accelerometer data on z-axis.

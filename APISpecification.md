@@ -1,11 +1,12 @@
 ## API Description
 ###### A REST API
 
-Preliminary v1 specification. Using PHP/Slim at the development server of Rain.
+Preliminary v1.1 specification. Using PHP/Slim at the development server of Rain.
 
-### Attention(s)
+### Attentions
 1. URL: [http://team9.coins.he-hosting.de/api](http://team9.coins.he-hosting.de/api)
-2. The timezone is Europe/Berlin.
+2. The Names of request body are not case sensitive, but names of response body are.
+3. The timezone is Europe/Berlin.
 
 ### Response format of failed request
 
@@ -84,9 +85,9 @@ Status | *int* | Status
 Name | Required | Type | Description
 --- | --- | --- | ---
 Token | yes | *string* | Auth token that identifies the user
-Timestamp | yes | *DateTime* | The DateTime this datasheet is associated with
-Happiness | no | *uint* | Happiness Likert Scale
-WhoHaveYouBeenWith | no | *uint* | Enum that indicates who has the user been with
+Timestamp | yes | *dateTime* | The DateTime this datasheet is associated with
+Happiness | no | *int* | Happiness Likert Scale
+WhoHaveYouBeenWith | no | *int* | Enum that indicates who has the user been with
 DidYouDoSports | no | *boolean* | Indicates whether the user did any sports activity
 
 ###### Response Body
@@ -101,16 +102,20 @@ Status | *int* | Status
 Name | Required | Type | Description
 --- | --- | --- | ---
 Token | yes | *string* | Auth token that identifies the user
-Timestamp | yes | *DateTime* | The DateTime this datasheet is associated with
-Steps | no | *uint* | The number of steps
-AvgBPM | no | *uint* | Average Heart Rate in BPM
-MinBPM | no | *uint* | Minimum Heart Rate in BPM
-MaxBPM | no | *uint* | Maximum Heart Rate in BPM
-AvgLightLevel | no | *uint* | The average ambient light level
-Activity | no | *uint* | The current activity the user is doing
-SleepSeconds | no | *uint* | The number of seconds the user was sleeping
-PositionLat | no | *Decimal(9,6)* | Current lat position of the user (GPS)
-PositionLon | no | *Decimal(9,6)* | Current lon position of the user (GPS)
+Timestamp | yes | *dateTime* | The DateTime this datasheet is associated with
+Steps | no | *int* | The number of steps
+AvgBPM | no | *int* | Average Heart Rate in BPM
+MinBPM | no | *int* | Minimum Heart Rate in BPM
+MaxBPM | no | *int* | Maximum Heart Rate in BPM
+AvgLightLevel | no | *int* | The average ambient light level
+Activity | no | *int* | The current activity the user is doing
+SleepSeconds | no | *int* | The number of seconds the user was sleeping
+PositionLat | no | *decimal(9,6)* | Current lat position of the user (GPS)
+PositionLon | no | *decimal(9,6)* | Current lon position of the user (GPS)
+Altitude | no | *decimal(12,6)* | Altitude
+Acc_x | no | *int* | Accelerometer data on x-axis.
+Acc_y | no | *int* | Accelerometer data on y-axis.
+Acc_z | no | *int* | Accelerometer data on z-axis.
 
 ###### Response Body
 Name | Type | Description
