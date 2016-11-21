@@ -35,25 +35,9 @@ void exit_down_single_click_handler(ClickRecognizerRef recognizer, void *context
   }
 }
 
-void exit_back_single_click_handler(ClickRecognizerRef recognizer, void *context){
-   if(number==1){
-   window_stack_push(main_window_get_window(), true);
-  } 
-  if(number ==2){
-    window_stack_push(sportquestion_window_get_window(), true);
-  }
-    if(number ==3){
-    window_stack_push(whoyouwith_window_get_window(), true);
-  }
-  if (number <1 || number >3){
-    window_stack_pop_all(true);
-  }
-}
-
 void exit_click_config_provider(void *context) {
   window_single_click_subscribe(BUTTON_ID_UP, (ClickHandler)exit_up_single_click_handler);
   window_single_click_subscribe(BUTTON_ID_DOWN, (ClickHandler) exit_down_single_click_handler);
-  window_single_click_subscribe(BUTTON_ID_BACK, (ClickHandler) exit_back_single_click_handler);
 }
 
 void setNumberOfWindow(int n){

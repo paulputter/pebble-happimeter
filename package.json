@@ -5,24 +5,12 @@
     "name": "happimeter",
     "pebble": {
         "capabilities": [
-            "location",
-            "configurable",
             "health"
         ],
         "displayName": "Happimeter",
-        "enableMultiJS": true,
+        "enableMultiJS": false,
         "messageKeys": [
-            "steps",
-            "min_bpm",
-            "max_bpm",
-            "avg_bpm",
-            "avg_light_level",
-            "activity",
-            "sleep",
-            "current_time",
-            "acc_x",
-            "acc_y",
-            "acc_z"
+            "testkey"
         ],
         "projectType": "native",
         "resources": {
@@ -105,8 +93,7 @@
         "targetPlatforms": [
             "aplite",
             "basalt",
-            "chalk",
-            "emery"
+            "chalk"
         ],
         "uuid": "3808bef8-6b6f-4478-aec0-0649e99c5bb7",
         "watchapp": {

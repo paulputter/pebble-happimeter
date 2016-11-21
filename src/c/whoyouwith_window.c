@@ -61,10 +61,6 @@ void select_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex 
 }
 
 void select_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
-       // save the given answer: question 1, answer 'cell_index'
-    // PROBLEM: no proof, if it functions correctly
-  setAnswer(3,(int) cell_index->row);
-  
    window_stack_pop_all(true);
 }
 
