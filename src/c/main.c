@@ -37,8 +37,22 @@ static void init() {
   whoyouwith_window_create();
   sportquestion_window_create();
   main_window_create();
+
+  //actual_time in minutes
+  const time_t actual_time = time(NULL)/60;
   
- window_stack_push(wakeup_window_get_window(), true);
+
+  if(launch_reason() == APP_LAUNCH_WAKEUP) {
+    //Vibration
+    vibes_double_pulse();
+    window_stack_push(wakeup_window_get_window(), true);
+    
+    //else the normal main window pops up
+  } else {
+    window_stack_push(main_window_get_window(), true);
+  }
+  
+ 
 
 }
 
