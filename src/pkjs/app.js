@@ -1,3 +1,12 @@
+// Import the Clay package
+var Clay = require('pebble-clay');
+// Load our Clay configuration file
+var clayConfig = require('./config');
+// Load our custom function Clay file
+var customClay = require('./custom-clay');
+// Initialize Clay
+var clay = new Clay(clayConfig, customClay);
+
 var url = "";
 var watchToken = "";
 

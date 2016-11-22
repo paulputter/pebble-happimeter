@@ -1,6 +1,8 @@
 {
     "author": "CoinGroup9",
-    "dependencies": {},
+    "dependencies": {
+        "pebble-clay": "^1.0.3"
+    },
     "keywords": [],
     "name": "happimeter",
     "pebble": {
@@ -22,47 +24,16 @@
             "current_time",
             "acc_x",
             "acc_y",
-            "acc_z"
+            "acc_z",
+            "userinfo_name",
+            "userinfo_email",
+            "userinfo_weight",
+            "userinfo_sportiness",
+            "sportiness_description"
         ],
         "projectType": "native",
         "resources": {
             "media": [
-                {
-                    "file": "images/SignificantOther",
-                    "name": "SignificantOther",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/Family",
-                    "name": "Family",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/Colleauge",
-                    "name": "Colleauge",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/Friend",
-                    "name": "Friend",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/Pet",
-                    "name": "Pet",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/HowAreYouFeeling",
-                    "name": "HowAreYouFeeling",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
                 {
                     "file": "images/zzz.png",
                     "name": "SLEEP",
@@ -118,14 +89,50 @@
                     "type": "bitmap"
                 },
                 {
+                    "file": "images/SignificantOther",
+                    "name": "SignificantOther",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Pet",
+                    "name": "Pet",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/Normal_Smiley",
                     "name": "Normal_Smiley",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
                 {
+                    "file": "images/HowAreYouFeeling",
+                    "name": "HowAreYouFeeling",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/Happy_Smiley",
                     "name": "Happy_Smiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Friend",
+                    "name": "Friend",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Family",
+                    "name": "Family",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Colleauge",
+                    "name": "Colleauge",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 }
