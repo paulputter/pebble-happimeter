@@ -28,6 +28,30 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/tree4",
+                    "name": "IMAGE_TREE4",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/tree3",
+                    "name": "IMAGE_TREE3",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/tree2",
+                    "name": "IMAGE_TREE2",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/tree1",
+                    "name": "IMAGE_TREE1",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/zzz.png",
                     "name": "SLEEP",
                     "targetPlatforms": null,
