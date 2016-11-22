@@ -70,19 +70,19 @@ void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *c
             break;
            case 1:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, " happy", NULL, Happy);
+              menu_cell_basic_draw(ctx, cell_layer, "", NULL, Happy);
             break;
            case 2:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, " normal", NULL, Normal);
+              menu_cell_basic_draw(ctx, cell_layer, "", NULL, Normal);
             break;
            case 3:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, " unhappy", NULL, Unhappy);
+              menu_cell_basic_draw(ctx, cell_layer, "", NULL, Unhappy);
             break;
            case 4:
           // NULL = Smily icon to input
-              menu_cell_basic_draw(ctx, cell_layer, " very unhappy", NULL, Very_Unhappy);
+              menu_cell_basic_draw(ctx, cell_layer, "", NULL, Very_Unhappy);
             break;
         }
     
@@ -109,7 +109,7 @@ void setup_menu_layer(Window *window) {
 
     mainMenuLayer = menu_layer_create(bounds);
     menu_layer_set_normal_colors(mainMenuLayer,  GColorWhite, GColorWhite);
-  menu_layer_set_highlight_colors(mainMenuLayer, GColorBlack, GColorBlack);
+  menu_layer_set_highlight_colors(mainMenuLayer, GColorLightGray, GColorBlack);
   
     menu_layer_set_callbacks(mainMenuLayer, NULL, (MenuLayerCallbacks){
         .get_num_sections = menu_get_num_sections_callback,

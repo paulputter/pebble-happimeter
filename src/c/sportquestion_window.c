@@ -60,20 +60,20 @@ void sportquestion_window_load(Window *window){
   //bitmap_layer_set_compositing_mode(s_icon2_layer, GCompOpSet);
   //layer_add_child(window_layer, bitmap_layer_get_layer(s_icon2_layer));
   
-  const GEdgeInsets frame_insets = {.top = 40, .right = ACTION_BAR_WIDTH, .bottom = 40, .left = 0 };
-  s_frame_layer = text_layer_create(grect_inset(bounds, frame_insets));
+  //const GEdgeInsets frame_insets = {.top = 40, .right = ACTION_BAR_WIDTH, .bottom = 40, .left = 0 };
+  //s_frame_layer = text_layer_create(grect_inset(bounds, frame_insets));
   // text_layer_set_text(s_frame_layer, "n");
-  text_layer_set_background_color(s_frame_layer, GColorBlack);
-  layer_add_child(window_layer, text_layer_get_layer(s_frame_layer));
+  //text_layer_set_background_color(s_frame_layer, GColorBlack);
+  //layer_add_child(window_layer, text_layer_get_layer(s_frame_layer));
 
   // The box for the text
-  const GEdgeInsets label_insets = {.top = 45, .right = ACTION_BAR_WIDTH, .bottom = 42, .left = 2 };
-  s_label_layer = text_layer_create(grect_inset(bounds, label_insets));
-  text_layer_set_text(s_label_layer, SPORTQUESTION_WINDOW_MESSAGE);
-  text_layer_set_background_color(s_label_layer, GColorGreen);
-  text_layer_set_text_alignment(s_label_layer, GTextAlignmentCenter);
-  text_layer_set_font(s_label_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
-  layer_add_child(window_layer, text_layer_get_layer(s_label_layer));
+  //const GEdgeInsets label_insets = {.top = 45, .right = ACTION_BAR_WIDTH, .bottom = 42, .left = 2 };
+  //s_label_layer = text_layer_create(grect_inset(bounds, label_insets));
+  //text_layer_set_text(s_label_layer, SPORTQUESTION_WINDOW_MESSAGE);
+  //text_layer_set_background_color(s_label_layer, GColorGreen);
+  //text_layer_set_text_alignment(s_label_layer, GTextAlignmentCenter);
+  //text_layer_set_font(s_label_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+  //layer_add_child(window_layer, text_layer_get_layer(s_label_layer));
 
   s_tick_bitmap = gbitmap_create_with_resource(RESOURCE_ID_TICK);
   s_cross_bitmap = gbitmap_create_with_resource(RESOURCE_ID_CROSS);

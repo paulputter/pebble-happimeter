@@ -5,6 +5,7 @@
 
 Window *whoyouwithWindow;
 MenuLayer *whoyouwithMenuLayer;
+static GBitmap *Pet, *Friend, *Colleague, *Family, *Significant_Other;
 
 
 uint16_t select_get_num_sections_callback(MenuLayer *menu_layer, void *data) {
@@ -24,6 +25,8 @@ int16_t select_get_header_height_callback(MenuLayer *menu_layer, uint16_t sectio
     return MENU_CELL_BASIC_HEADER_HEIGHT;
 }
 
+
+
 void select_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t section_index, void *data) {
   menu_cell_basic_header_draw(ctx, cell_layer, "Who are you with");
 }
@@ -36,19 +39,19 @@ void select_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex 
               menu_cell_basic_draw(ctx, cell_layer, "Nobody", NULL, NULL);
             break;
            case 1:
-              menu_cell_basic_draw(ctx, cell_layer, "Pet", NULL, NULL);
+              menu_cell_basic_draw(ctx, cell_layer, "", NULL, Pet);
             break;
            case 2:
-              menu_cell_basic_draw(ctx, cell_layer, "Friends", NULL, NULL);
+              menu_cell_basic_draw(ctx, cell_layer, "", NULL, Friend);
             break;
            case 3:
-              menu_cell_basic_draw(ctx, cell_layer, "Colleague", NULL, NULL);
+              menu_cell_basic_draw(ctx, cell_layer, "", NULL, Colleague);
             break;
            case 4:
-              menu_cell_basic_draw(ctx, cell_layer, "Family", NULL, NULL);
+              menu_cell_basic_draw(ctx, cell_layer, "", NULL, Family);
             break;
              case 5:
-              menu_cell_basic_draw(ctx, cell_layer, "Significant Other", NULL, NULL);
+              menu_cell_basic_draw(ctx, cell_layer, "", NULL, Significant_Other);
             break;
            case 6:
               menu_cell_basic_draw(ctx, cell_layer, "Other", NULL, NULL);
@@ -74,6 +77,8 @@ void select_menu_layer(Window *window) {
   GRect bounds = layer_get_bounds(window_layer);
 
     whoyouwithMenuLayer = menu_layer_create(bounds);
+     menu_layer_set_normal_colors(whoyouwithMenuLayer,  GColorWhite, GColorWhite);
+  menu_layer_set_highlight_colors(whoyouwithMenuLayer, GColorLightGray, GColorBlack);
     menu_layer_set_callbacks(whoyouwithMenuLayer, NULL, (MenuLayerCallbacks){
         .get_num_sections = select_get_num_sections_callback,
         .get_num_rows = select_get_num_rows_callback,
@@ -89,12 +94,28 @@ void select_menu_layer(Window *window) {
     layer_add_child(window_layer, menu_layer_get_layer(whoyouwithMenuLayer));
 }
 
+
 void whoyouwith_window_load(Window *window){
   select_menu_layer(window);
+  Pet = gbitmap_create_with_resource(RESOURCE_ID_Pet);
+  Friend = gbitmap_create_with_resource(RESOURCE_ID_Friend);
+  Colleague = gbitmap_create_with_resource(RESOURCE_ID_Colleauge);
+  Family = gbitmap_create_with_resource(RESOURCE_ID_Family);
+  Significant_Other = gbitmap_create_with_resource(RESOURCE_ID_SignificantOther);
+ 
 }
+
+
 
 void whoyouwith_window_unload(Window *window){
   menu_layer_destroy(whoyouwithMenuLayer);
+  
+  gbitmap_destroy(Pet);
+  gbitmap_destroy(Friend);
+  gbitmap_destroy(Colleague);
+  gbitmap_destroy(Family);
+  gbitmap_destroy(Significant_Other);
+
 }
 
 // to remember where we were, should we fetch the exit_window

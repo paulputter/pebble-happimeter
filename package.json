@@ -28,26 +28,38 @@
         "resources": {
             "media": [
                 {
-                    "file": "images/tree4",
-                    "name": "IMAGE_TREE4",
+                    "file": "images/SignificantOther",
+                    "name": "SignificantOther",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
                 {
-                    "file": "images/tree3",
-                    "name": "IMAGE_TREE3",
+                    "file": "images/Family",
+                    "name": "Family",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
                 {
-                    "file": "images/tree2",
-                    "name": "IMAGE_TREE2",
+                    "file": "images/Colleauge",
+                    "name": "Colleauge",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
                 {
-                    "file": "images/tree1",
-                    "name": "IMAGE_TREE1",
+                    "file": "images/Friend",
+                    "name": "Friend",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Pet",
+                    "name": "Pet",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/HowAreYouFeeling",
+                    "name": "HowAreYouFeeling",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
@@ -72,12 +84,6 @@
                 {
                     "file": "images/main_smily.png",
                     "name": "IMAGE_SPLASH",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/happy_smiley.png",
-                    "name": "HAPPY",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },

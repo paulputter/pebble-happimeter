@@ -67,7 +67,7 @@ static void init() {
     //else the normal main window pops up
   } else {
           window_stack_push(splash_window_get_window(), true);
-   app_timer_register(3000, launch_main_window3, NULL);
+   app_timer_register(0000, launch_main_window3, NULL);
   
   }
 
