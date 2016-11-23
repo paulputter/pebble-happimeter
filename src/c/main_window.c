@@ -46,7 +46,7 @@ static void menu_draw_header(GContext* ctx, const Layer* cell_layer, uint16_t se
 
 // Size of the header box
 int16_t menu_header_height(struct MenuLayer *menu, uint16_t section_index, void *callback_context) {
-  return 50;
+  return 40;
 }
 
 //void menu_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t section_index, void *data) {
@@ -136,7 +136,7 @@ void main_window_load(Window *window){
   Normal = gbitmap_create_with_resource(RESOURCE_ID_Normal_Smiley);
   Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Unhappy_Smiley);
   Very_Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Very_Unhappy_Smiley);
-  HowAreYouFeeling = gbitmap_create_with_resource(RESOURCE_ID_HowAreYouFeeling);
+  HowAreYouFeeling = gbitmap_create_with_resource(RESOURCE_ID_HowAreYouFeelingBolt);
 
 }
 

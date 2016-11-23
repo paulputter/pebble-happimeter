@@ -35,6 +35,12 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/HowAreYouFeelingBolt.png",
+                    "name": "HowAreYouFeelingBolt",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/WhoAreYouWithBolt.png",
                     "name": "WhoAreYouWithBolt",
                     "targetPlatforms": [
