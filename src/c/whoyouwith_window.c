@@ -23,10 +23,9 @@ uint16_t select_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_in
     }
 }
 
-
+// Content of the header
 static void select_draw_header(GContext* ctx, const Layer* cell_layer, uint16_t section_index, void* callback_context) {
    GRect bounds = layer_get_bounds(cell_layer);
-
   //menu_cell_basic_draw(ctx, cell_layer, "", NULL, HowAreYouFeeling);
    graphics_context_set_fill_color(ctx, GColorWhite);
    //graphics_context_set_text_color(ctx, GColorBlack);
@@ -86,9 +85,10 @@ void select_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex 
     }
 }
 
+
+  // save the given answer: question 1, answer 'cell_index'
+  // PROBLEM: no proof, if it functions correctly
 void select_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
-       // save the given answer: question 1, answer 'cell_index'
-    // PROBLEM: no proof, if it functions correctly
   setAnswer(3,(int) cell_index->row);
   window_stack_push(tree_window_get_window(), true);
    //window_stack_pop_all(true);
@@ -100,20 +100,21 @@ void select_menu_layer(Window *window) {
   GRect bounds = layer_get_bounds(window_layer);
 
     whoyouwithMenuLayer = menu_layer_create(bounds);
-     menu_layer_set_normal_colors(whoyouwithMenuLayer,  GColorWhite, GColorWhite);
-  menu_layer_set_highlight_colors(whoyouwithMenuLayer, GColorLightGray, GColorBlack);
+    menu_layer_set_normal_colors(whoyouwithMenuLayer,  GColorWhite, GColorWhite);
+    menu_layer_set_highlight_colors(whoyouwithMenuLayer, GColorLightGray, GColorBlack);
     menu_layer_set_callbacks(whoyouwithMenuLayer, NULL, (MenuLayerCallbacks){
         .get_num_sections = select_get_num_sections_callback,
         .get_num_rows = select_get_num_rows_callback,
         .get_header_height = select_header_height,
-           .draw_header = select_draw_header,
+        .draw_header = select_draw_header,
         .draw_row = select_draw_row_callback,
         .select_click = select_select_callback
     });
 
     menu_layer_set_click_config_onto_window(whoyouwithMenuLayer, window);
-     // overwrite back button
-  force_back_button(window, whoyouwithMenuLayer);
+  
+    // overwrite default setting for back button
+    force_back_button(window, whoyouwithMenuLayer);
     layer_add_child(window_layer, menu_layer_get_layer(whoyouwithMenuLayer));
 }
 
@@ -128,14 +129,12 @@ void whoyouwith_window_load(Window *window){
   Significant_Other = gbitmap_create_with_resource(RESOURCE_ID_SignificantOther);
   Other = gbitmap_create_with_resource(RESOURCE_ID_Other);
   WhoAreYouWith = gbitmap_create_with_resource(RESOURCE_ID_WhoAreYouWithBolt);
- 
 }
 
 
 
 void whoyouwith_window_unload(Window *window){
-  menu_layer_destroy(whoyouwithMenuLayer);
-  
+  menu_layer_destroy(whoyouwithMenuLayer); 
   gbitmap_destroy(Nobody);
   gbitmap_destroy(Pet);
   gbitmap_destroy(Friend);
@@ -143,7 +142,6 @@ void whoyouwith_window_unload(Window *window){
   gbitmap_destroy(Family);
   gbitmap_destroy(Significant_Other);
   gbitmap_destroy(Other);
-
 }
 
 // to remember where we were, should we fetch the exit_window
@@ -162,8 +160,7 @@ void whoyouwith_window_create(){
 }
 
 void whoyouwith_window_destroy(){
-  window_destroy(whoyouwithWindow);
-  
+  window_destroy(whoyouwithWindow);  
 }
 
 Window *whoyouwith_window_get_window(){

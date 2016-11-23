@@ -29,13 +29,10 @@ uint16_t menu_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_inde
     }
 }
 
-//int16_t menu_get_header_height_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {
-  //  return MENU_CELL_BASIC_HEADER_HEIGHT;
-//}
+
 
 static void menu_draw_header(GContext* ctx, const Layer* cell_layer, uint16_t section_index, void* callback_context) {
    GRect bounds = layer_get_bounds(cell_layer);
-
   //menu_cell_basic_draw(ctx, cell_layer, "", NULL, HowAreYouFeeling);
    graphics_context_set_fill_color(ctx, GColorWhite);
    //graphics_context_set_text_color(ctx, GColorBlack);
@@ -49,21 +46,22 @@ static void menu_draw_header(GContext* ctx, const Layer* cell_layer, uint16_t se
 
 // Size of the header box
 int16_t menu_header_height(struct MenuLayer *menu, uint16_t section_index, void *callback_context) {
-  return 40;
-
+  return 50;
 }
 
 //void menu_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t section_index, void *data) {
   //  switch(section_index){
-      
     //  case 0:
       //  menu_cell_basic_header_draw(ctx, cell_layer, "Moods");
       //break;
     //}
 //}
 
-void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *cell_index, void *data) {
+//int16_t menu_get_header_height_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {
+  //  return MENU_CELL_BASIC_HEADER_HEIGHT;
+//}
 
+void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *cell_index, void *data) {
     switch (cell_index->section){
       case 0:
         switch (cell_index->row){
@@ -94,15 +92,12 @@ void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *c
     }
 }
 
-// Detect when somebody hits the select button
+// Detect when somebody hits the select button and save the user input
 void menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
-  {
      // save the given answer: question 1, answer 'cell_index'
     // PROBLEM: no proof, if it functions correctly
   setAnswer(1,(int) cell_index->row);
-    
-    window_stack_push(sportquestion_window_get_window(), true); 
-}
+  window_stack_push(sportquestion_window_get_window(), true);
 }
 
 void setup_menu_layer(Window *window) {
@@ -127,13 +122,13 @@ void setup_menu_layer(Window *window) {
   
   //menu_layer_set_center_focused(mainMenuLayer, true);
   
-   // overwrite back button
+    // overwrite default setting for back button
     force_back_button(window, mainMenuLayer);
 
     layer_add_child(window_layer, menu_layer_get_layer(mainMenuLayer));
 }
 
-
+// Load the used images
 void main_window_load(Window *window){
  setup_menu_layer(window);
   Very_Happy = gbitmap_create_with_resource(RESOURCE_ID_Very_Happy_Smiley);
@@ -141,7 +136,7 @@ void main_window_load(Window *window){
   Normal = gbitmap_create_with_resource(RESOURCE_ID_Normal_Smiley);
   Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Unhappy_Smiley);
   Very_Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Very_Unhappy_Smiley);
-    HowAreYouFeeling = gbitmap_create_with_resource(RESOURCE_ID_HowAreYouFeeling);
+  HowAreYouFeeling = gbitmap_create_with_resource(RESOURCE_ID_HowAreYouFeeling);
 
 }
 
