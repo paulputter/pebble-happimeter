@@ -35,6 +35,24 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/Other",
+                    "name": "Other",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Nobody",
+                    "name": "Nobody",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/zzz.png",
+                    "name": "SLEEP",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/tree4",
                     "name": "IMAGE_TREE4",
                     "targetPlatforms": null,
@@ -55,12 +73,6 @@
                 {
                     "file": "images/tree1",
                     "name": "IMAGE_TREE1",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/zzz.png",
-                    "name": "SLEEP",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },

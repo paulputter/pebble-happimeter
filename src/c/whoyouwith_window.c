@@ -6,7 +6,7 @@
 
 Window *whoyouwithWindow;
 MenuLayer *whoyouwithMenuLayer;
-static GBitmap *Pet, *Friend, *Colleague, *Family, *Significant_Other;
+static GBitmap *Nobody,*Pet, *Friend, *Colleague, *Family, *Significant_Other, *Other;
 
 
 uint16_t select_get_num_sections_callback(MenuLayer *menu_layer, void *data) {
@@ -37,7 +37,7 @@ void select_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex 
       case 0:
         switch (cell_index->row){
           case 0:
-              menu_cell_basic_draw(ctx, cell_layer, "Nobody", NULL, NULL);
+              menu_cell_basic_draw(ctx, cell_layer, "", NULL, Nobody);
             break;
            case 1:
               menu_cell_basic_draw(ctx, cell_layer, "", NULL, Pet);
@@ -55,7 +55,7 @@ void select_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex 
               menu_cell_basic_draw(ctx, cell_layer, "", NULL, Significant_Other);
             break;
            case 6:
-              menu_cell_basic_draw(ctx, cell_layer, "Other", NULL, NULL);
+              menu_cell_basic_draw(ctx, cell_layer, "", NULL, Other);
             break;
         }
     
@@ -98,11 +98,13 @@ void select_menu_layer(Window *window) {
 
 void whoyouwith_window_load(Window *window){
   select_menu_layer(window);
+  Nobody = gbitmap_create_with_resource(RESOURCE_ID_Nobody);
   Pet = gbitmap_create_with_resource(RESOURCE_ID_Pet);
   Friend = gbitmap_create_with_resource(RESOURCE_ID_Friend);
   Colleague = gbitmap_create_with_resource(RESOURCE_ID_Colleauge);
   Family = gbitmap_create_with_resource(RESOURCE_ID_Family);
   Significant_Other = gbitmap_create_with_resource(RESOURCE_ID_SignificantOther);
+  Other = gbitmap_create_with_resource(RESOURCE_ID_Other);
  
 }
 
@@ -111,11 +113,13 @@ void whoyouwith_window_load(Window *window){
 void whoyouwith_window_unload(Window *window){
   menu_layer_destroy(whoyouwithMenuLayer);
   
+  gbitmap_destroy(Nobody);
   gbitmap_destroy(Pet);
   gbitmap_destroy(Friend);
   gbitmap_destroy(Colleague);
   gbitmap_destroy(Family);
   gbitmap_destroy(Significant_Other);
+  gbitmap_destroy(Other);
 
 }
 
