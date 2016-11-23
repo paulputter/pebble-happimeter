@@ -11,3 +11,6 @@ void force_back_button(Window *window, MenuLayer *menu_layer);
   unsigned int weight;
   unsigned int sportiness;
 } UserConfiguration;
+
+//create array for saving the answers
+int userAnswers[3];

@@ -94,9 +94,11 @@ void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *c
 
 // Detect when somebody hits the select button and save the user input
 void menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
-     // save the given answer: question 1, answer 'cell_index'
-    // PROBLEM: no proof, if it functions correctly
+  // save the given answer: question 1, answer 'cell_index'
+  // PROBLEM: no proof, if it functions correctly
+  // Pascal: Tested it and it works! ;-)
   setAnswer(1,(int) cell_index->row);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Selected %d", (int) cell_index->row);
   window_stack_push(sportquestion_window_get_window(), true);
 }
 

@@ -29,29 +29,14 @@
             "userinfo_email",
             "userinfo_weight",
             "userinfo_sportiness",
-            "sportiness_description"
+            "sportiness_description",
+            "happiness",
+            "did_any_sports",
+            "who_have_you_been_with"
         ],
         "projectType": "native",
         "resources": {
             "media": [
-                {
-                    "file": "images/HowAreYouFeelingBolt.png",
-                    "name": "HowAreYouFeelingBolt",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/WhoAreYouWithBolt.png",
-                    "name": "WhoAreYouWithBolt",
-                    "targetPlatforms": [
-                        "aplite",
-                        "basalt",
-                        "chalk",
-                        "diorite",
-                        "emery"
-                    ],
-                    "type": "bitmap"
-                },
                 {
                     "file": "images/zzz.png",
                     "name": "SLEEP",
@@ -113,6 +98,18 @@
                     "type": "bitmap"
                 },
                 {
+                    "file": "images/WhoAreYouWithBolt.png",
+                    "name": "WhoAreYouWithBolt",
+                    "targetPlatforms": [
+                        "aplite",
+                        "basalt",
+                        "chalk",
+                        "diorite",
+                        "emery"
+                    ],
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/Very_Unhappy_Smiley",
                     "name": "Very_Unhappy_Smiley",
                     "targetPlatforms": null,
@@ -157,6 +154,12 @@
                 {
                     "file": "images/Nobody",
                     "name": "Nobody",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/HowAreYouFeelingBolt.png",
+                    "name": "HowAreYouFeelingBolt",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },

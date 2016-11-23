@@ -14,9 +14,6 @@
 // An instance of the struct
 static UserConfiguration config;
 
-//create array for saving the answers
-int userAnswers[3];
-
 // Initialize the default settings
 static void prv_default_settings() {
   config.username = "unknown";
@@ -113,7 +110,7 @@ void force_back_button(Window *window, MenuLayer *menu_layer) {
 
 // Save the answer given by the user
 void setAnswer(int questionNumber, int answer){
-  userAnswers[questionNumber]=answer;
+  userAnswers[questionNumber - 1] = answer;
 }
 
 void launch_main_window3 (){

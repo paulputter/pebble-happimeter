@@ -4,6 +4,33 @@
 
 static int current_measurement_id = 0;
 
+void perform_happiness_upload(int answers[]) {
+  // Declare the dictionary's iterator
+  DictionaryIterator *out_iter;
+
+  // open the app message
+  app_message_open(64, 256);
+
+  // prepare the outbox buffer for this message
+  AppMessageResult result = app_message_outbox_begin(&out_iter);
+  if(result == APP_MSG_OK) {
+    dict_write_int(out_iter, MESSAGE_KEY_happiness, &answers[0], sizeof(int), true);
+    dict_write_int(out_iter, MESSAGE_KEY_did_any_sports, &answers[1], sizeof(int), true);
+    dict_write_int(out_iter, MESSAGE_KEY_who_have_you_been_with, &answers[2], sizeof(int), true);
+
+    // send this message
+    result = app_message_outbox_send();
+    if(result != APP_MSG_OK) {
+      APP_LOG(APP_LOG_LEVEL_ERROR, "Error sending the happiness outbox: %d", (int)result);
+    } else {
+      APP_LOG(APP_LOG_LEVEL_INFO, "Succesfully sent the happiness outbox: %d", (int)result);
+    }
+  } else {
+    // the outbox cannot be used right now
+    APP_LOG(APP_LOG_LEVEL_ERROR, "Error preparing the happiness outbox: %d", (int)result);
+  }
+}
+
 void perform_upload() {
   if(get_measure(current_measurement_id, measurement_steps, false) != -1) {
     APP_LOG(APP_LOG_LEVEL_INFO, "Got a dataset with the id %d.", current_measurement_id);

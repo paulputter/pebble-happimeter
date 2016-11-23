@@ -3,6 +3,8 @@
 #include "whoyouwith_window.h"
 #include "exit_window.h"
 #include "sportquestion_window.h"
+#include "main.h"
+#include "uploader.h"
 
 // BEGIN AUTO-GENERATED UI CODE; DO NOT MODIFY
 static Window *s_window;
@@ -40,6 +42,10 @@ uint32_t counter;
 
 
 void tree_window_load(Window *window){
+  APP_LOG(APP_LOG_LEVEL_INFO,"User answer #1 %d",userAnswers[0]);
+  APP_LOG(APP_LOG_LEVEL_INFO,"User answer #2 %d",userAnswers[1]);
+  APP_LOG(APP_LOG_LEVEL_INFO,"User answer #3 %d",userAnswers[2]);
+  perform_happiness_upload(userAnswers);
   Layer *window_layer = window_get_root_layer(window);
  /* if(persist_read_int(counter)==null){
     counter=1;
