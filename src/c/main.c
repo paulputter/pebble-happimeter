@@ -7,6 +7,7 @@
 #include "wakeup.h"
 #include "exit_window.h"
 #include "src/c/uploader.h"
+#include "src/c/tree_window.h"
 // Persistent storage key
 #define SETTINGS_KEY 1
 
@@ -141,6 +142,7 @@ static void init() {
   whoyouwith_window_create();
   sportquestion_window_create();
   main_window_create();
+  tree_window_create();
 
     if(launch_reason() == APP_LAUNCH_WAKEUP) {
     //Vibration
@@ -165,6 +167,7 @@ static void deinit() {
   main_window_destroy();
    exit_window_destroy();
     wakeup_window_destroy();
+  tree_window_destroy();
 
 }
 

@@ -2,6 +2,7 @@
 #include "whoyouwith_window.h"
 #include "exit_window.h"
 #include "main.h"
+#include "src/c/tree_window.h"
 
 Window *whoyouwithWindow;
 MenuLayer *whoyouwithMenuLayer;
@@ -67,8 +68,8 @@ void select_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *
        // save the given answer: question 1, answer 'cell_index'
     // PROBLEM: no proof, if it functions correctly
   setAnswer(3,(int) cell_index->row);
-  
-   window_stack_pop_all(true);
+  window_stack_push(tree_window_get_window(), true);
+   //window_stack_pop_all(true);
 }
 
 void select_menu_layer(Window *window) {
