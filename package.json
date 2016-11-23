@@ -35,15 +35,15 @@
         "resources": {
             "media": [
                 {
-                    "file": "images/Other",
-                    "name": "Other",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/Nobody",
-                    "name": "Nobody",
-                    "targetPlatforms": null,
+                    "file": "images/WhoAreYouWithBolt.png",
+                    "name": "WhoAreYouWithBolt",
+                    "targetPlatforms": [
+                        "aplite",
+                        "basalt",
+                        "chalk",
+                        "diorite",
+                        "emery"
+                    ],
                     "type": "bitmap"
                 },
                 {
@@ -137,8 +137,20 @@
                     "type": "bitmap"
                 },
                 {
+                    "file": "images/Other",
+                    "name": "Other",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/Normal_Smiley",
                     "name": "Normal_Smiley",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/Nobody",
+                    "name": "Nobody",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },

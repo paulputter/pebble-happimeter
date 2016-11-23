@@ -6,7 +6,8 @@
 
 Window *whoyouwithWindow;
 MenuLayer *whoyouwithMenuLayer;
-static GBitmap *Nobody,*Pet, *Friend, *Colleague, *Family, *Significant_Other, *Other;
+static GBitmap *Nobody,*Pet, *Friend, *Colleague, *Family, *Significant_Other, *Other, *WhoAreYouWith;
+
 
 
 uint16_t select_get_num_sections_callback(MenuLayer *menu_layer, void *data) {
@@ -22,15 +23,36 @@ uint16_t select_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_in
     }
 }
 
+
+static void select_draw_header(GContext* ctx, const Layer* cell_layer, uint16_t section_index, void* callback_context) {
+   GRect bounds = layer_get_bounds(cell_layer);
+
+  //menu_cell_basic_draw(ctx, cell_layer, "", NULL, HowAreYouFeeling);
+   graphics_context_set_fill_color(ctx, GColorWhite);
+   //graphics_context_set_text_color(ctx, GColorBlack);
+   // draw the box; 3rd and 4th variables: rounding the corners of the box
+  // the watch has a displey of 200 p width
+   graphics_fill_rect(ctx,GRect((bounds.size.w-144)/2,4,144,40),8,GCornersAll);
+  graphics_draw_bitmap_in_rect(ctx, WhoAreYouWith, bounds);
+   // text in the box
+   //graphics_draw_text(ctx, ("How are you feeling?"),fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD),GRect(0, 0, bounds.size.w, 80), GTextOverflowModeWordWrap, GTextAlignmentCenter, NULL);
+}
+
+// Size of the header box
+int16_t select_header_height(struct MenuLayer *whoyouwithMenuLayer, uint16_t section_index, void *callback_context) {
+  return 40;
+
+}
+
 int16_t select_get_header_height_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {
     return MENU_CELL_BASIC_HEADER_HEIGHT;
 }
 
 
 
-void select_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t section_index, void *data) {
-  menu_cell_basic_header_draw(ctx, cell_layer, "Who are you with");
-}
+//void select_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t section_index, void *data) {
+  //menu_cell_basic_header_draw(ctx, cell_layer, "Who are you with");
+//}
 
 void select_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *cell_index, void *data) {
   switch (cell_index->section){
@@ -83,8 +105,8 @@ void select_menu_layer(Window *window) {
     menu_layer_set_callbacks(whoyouwithMenuLayer, NULL, (MenuLayerCallbacks){
         .get_num_sections = select_get_num_sections_callback,
         .get_num_rows = select_get_num_rows_callback,
-        .get_header_height = select_get_header_height_callback,
-        .draw_header = select_draw_header_callback,
+        .get_header_height = select_header_height,
+           .draw_header = select_draw_header,
         .draw_row = select_draw_row_callback,
         .select_click = select_select_callback
     });
@@ -105,6 +127,7 @@ void whoyouwith_window_load(Window *window){
   Family = gbitmap_create_with_resource(RESOURCE_ID_Family);
   Significant_Other = gbitmap_create_with_resource(RESOURCE_ID_SignificantOther);
   Other = gbitmap_create_with_resource(RESOURCE_ID_Other);
+  WhoAreYouWith = gbitmap_create_with_resource(RESOURCE_ID_WhoAreYouWithBolt);
  
 }
 

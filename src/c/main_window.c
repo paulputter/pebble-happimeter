@@ -7,9 +7,12 @@
 Window *mainWindow;
 MenuLayer *mainMenuLayer;
 TextLayer *text_layer;
-static GBitmap *Very_Happy, *Happy, *Normal, *Unhappy, *Very_Unhappy;
+static GBitmap *Very_Happy, *Happy, *Normal, *Unhappy, *Very_Unhappy, *HowAreYouFeeling;
 static int16_t menu_header_height(struct MenuLayer *menu, uint16_t section_index, void *callback_context);
 static void menu_draw_header(GContext* ctx, const Layer* cell_layer, uint16_t section_index, void* callback_context);
+
+
+
 
   
 
@@ -32,21 +35,21 @@ uint16_t menu_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_inde
 
 static void menu_draw_header(GContext* ctx, const Layer* cell_layer, uint16_t section_index, void* callback_context) {
    GRect bounds = layer_get_bounds(cell_layer);
-   graphics_context_set_fill_color(ctx, GColorWhite);
-   graphics_context_set_text_color(ctx, GColorBlack);
-   // draw the box; 3rd and 4th variables: rounding the corners of the box
-   graphics_fill_rect(ctx,GRect(4,4,bounds.size.w-8,80),8,GCornersAll);
-   // text in the box
-   graphics_draw_text(ctx, ("How are you feeling?"),
-                       fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD),
-                       GRect(0, 0, bounds.size.w, 80), GTextOverflowModeWordWrap,
-                       GTextAlignmentCenter, NULL);
 
+  //menu_cell_basic_draw(ctx, cell_layer, "", NULL, HowAreYouFeeling);
+   graphics_context_set_fill_color(ctx, GColorWhite);
+   //graphics_context_set_text_color(ctx, GColorBlack);
+   // draw the box; 3rd and 4th variables: rounding the corners of the box
+  // the watch has a displey of 200 p width
+   graphics_fill_rect(ctx,GRect((bounds.size.w-144)/2,4,144,40),8,GCornersAll);
+  graphics_draw_bitmap_in_rect(ctx, HowAreYouFeeling, bounds);
+   // text in the box
+   //graphics_draw_text(ctx, ("How are you feeling?"),fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD),GRect(0, 0, bounds.size.w, 80), GTextOverflowModeWordWrap, GTextAlignmentCenter, NULL);
 }
 
 // Size of the header box
 int16_t menu_header_height(struct MenuLayer *menu, uint16_t section_index, void *callback_context) {
-  return 65;
+  return 40;
 
 }
 
@@ -138,6 +141,8 @@ void main_window_load(Window *window){
   Normal = gbitmap_create_with_resource(RESOURCE_ID_Normal_Smiley);
   Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Unhappy_Smiley);
   Very_Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Very_Unhappy_Smiley);
+    HowAreYouFeeling = gbitmap_create_with_resource(RESOURCE_ID_HowAreYouFeeling);
+
 }
 
 void main_window_unload(Window *window){
