@@ -37,9 +37,22 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/ExitWindowEmery",
+                    "name": "ExitWindowEmery",
+                    "targetPlatforms": [
+                        "emery"
+                    ],
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/ExitWindow",
                     "name": "ExitWindow",
-                    "targetPlatforms": null,
+                    "targetPlatforms": [
+                        "aplite",
+                        "basalt",
+                        "chalk",
+                        "diorite"
+                    ],
                     "type": "bitmap"
                 },
                 {
