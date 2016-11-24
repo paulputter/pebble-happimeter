@@ -16,10 +16,10 @@ static UserConfiguration config;
 
 // Initialize the default settings
 static void prv_default_settings() {
-  config.username = "unknown";
-  config.email = "invalid@email.com";
-  config.weight = 0;
-  config.sportiness = 0;
+  config.username = default_username;
+  config.email = default_email;
+  config.weight = default_weight;
+  config.sportiness = default_sportiness;
   // TODO: ADD birthdate
 }
 

@@ -36,17 +36,51 @@ module.exports = function(minified) {
     }
   }
 
+  function emailIsValid(email){
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+  
+  // checks on each char entered if the email address is valid according to REGEX
+  // if it is valid enable submit button
+  // else disable submit button
+  function verifyEmailOnChange(){
+    var email = clayConfig.getItemByMessageKey("userinfo_email");
+    var submit = clayConfig.getItemsByType("submit")[0];
+    if (emailIsValid(email.get()))
+      {
+        submit.enable();
+      }   
+    else
+      submit.disable();
+  }
+  
+  // Aaand double check email addrees ... 
+  // cause maybe the user thinks he is smarter than the developers... -_-
+  function verifyEmailOnSubmit(){
+    var email = clayConfig.getItemByMessageKey("userinfo_email");
+    if (!emailIsValid(email.get()))
+      {
+        email.set("invalid@email.com");
+      }      
+  }
+  
+  
   clayConfig.on(clayConfig.EVENTS.AFTER_BUILD, function() {
-    var changeSportLevel = clayConfig.getItemByMessageKey('userinfo_sportiness');
+    // verify email address according to REGEXP
+    var email = clayConfig.getItemByMessageKey("userinfo_email");
+    var submit = clayConfig.getItemsByType("submit")[0];
+    
+    verifyEmailOnChange.call(email);
+    email.on("change", verifyEmailOnChange);
+    
+    // change sport description according to sport number
+    var changeSportLevel = clayConfig.getItemByMessageKey("userinfo_sportiness");
     toggleSportyDesc.call(changeSportLevel);
     changeSportLevel.on('change', toggleSportyDesc);
     
-    // the following may not be needed
-    // var linkToWebsite = clayConfig.getItemByMessageKey('linktoWebsite');
-    
-    
+    // check if email address is a valid Email address when user wants to submit the form
+    submit.on('click', verifyEmailOnSubmit);
   });
-  
-//  clayConfig.on(clayConfig.EVENTS.)
 
 };
