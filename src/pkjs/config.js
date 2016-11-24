@@ -47,7 +47,7 @@ module.exports = [
       },
       { //text to show how sporty the user is. should be variable via a function
         "type": "text",
-        "messageKey": "sportiness_description",
+        "id": "sportiness_description",
        "defaultValue": "<span style='font-size:0.8em'>I dont do sports regularly</span>"
       },
       {
@@ -66,7 +66,7 @@ module.exports = [
       {
         "type" : "text",
 //        "messageKey": "linkToWebsite",
-        "defaultValue": "<a href='http://www.google.com'>I will be a link someday</a>"
+        "defaultValue": "<a href='http://www.google.com'>I am a link already</a>"
       }
     ]
   },

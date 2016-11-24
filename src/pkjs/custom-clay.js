@@ -6,8 +6,8 @@ module.exports = function(minified) {
 
   // set the correct description according to sport level 1 - 5
   function toggleSportyDesc() {
-    var sport_desc = clayConfig.getItemByMessageKey('sportiness_description');
     var sport_num = clayConfig.getItemByMessageKey('userinfo_sportiness');
+    var sport_desc = clayConfig.getItemById('sportiness_description');
     var smallFontStartTag="<span style='font-size:0.8em'>";
     var smallFontEndTag="</span>";
     var sportiText;
@@ -41,9 +41,12 @@ module.exports = function(minified) {
     toggleSportyDesc.call(changeSportLevel);
     changeSportLevel.on('change', toggleSportyDesc);
     
-    var linkToWebsite = clayConfig.getItemByMessageKey('linktoWebsite');
-    // this does not work like that 
-    // linkToWebsite.on('click', "window.location.href = 'http://www.google.com';");
+    // the following may not be needed
+    // var linkToWebsite = clayConfig.getItemByMessageKey('linktoWebsite');
+    
+    
   });
+  
+//  clayConfig.on(clayConfig.EVENTS.)
 
 };
