@@ -37,6 +37,12 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/ExitWindow",
+                    "name": "ExitWindow",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/zzz.png",
                     "name": "SLEEP",
                     "targetPlatforms": null,

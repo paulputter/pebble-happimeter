@@ -13,7 +13,7 @@ static ActionBarLayer *s_action_bar_layer;
 int number = 0;
 
 
-static GBitmap *s_icon_bitmap, *s_tick_bitmap, *s_cross_bitmap;
+static GBitmap *s_icon_bitmap, *s_tick_bitmap, *s_cross_bitmap, *exit_Window;
 
 void exit_up_single_click_handler(ClickRecognizerRef recognizer, void *context){
   window_stack_pop_all(true);
@@ -62,17 +62,25 @@ void setNumberOfWindow(int n){
 
 void exit_window_load(Window *window){
   
+  
+  
  Layer *window_layer = window_get_root_layer(window);
-  GRect bounds = layer_get_bounds(window_layer);
+ // GRect bounds = layer_get_bounds(window_layer);
+  
+  exit_Window = gbitmap_create_with_resource(RESOURCE_ID_ExitWindow);
+  s_icon_layer = bitmap_layer_create(GRect(0,0,144,168));
+  bitmap_layer_set_bitmap(s_icon_layer, exit_Window);
+  bitmap_layer_set_compositing_mode(s_icon_layer, GCompOpSet);
+  layer_add_child(window_layer, bitmap_layer_get_layer(s_icon_layer));
   
 
-  const GEdgeInsets label_insets = {.top = 10, .right = ACTION_BAR_WIDTH+ACTION_BAR_WIDTH / 2, .left = ACTION_BAR_WIDTH / 2};
-  s_label_layer = text_layer_create(grect_inset(bounds, label_insets));
-  text_layer_set_text(s_label_layer, EXIT_WINDOW_MESSAGE);
-  text_layer_set_background_color(s_label_layer, GColorClear);
-  text_layer_set_text_alignment(s_label_layer, GTextAlignmentCenter);
-  text_layer_set_font(s_label_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
-  layer_add_child(window_layer, text_layer_get_layer(s_label_layer));
+ // const GEdgeInsets label_insets = {.top = 10, .right = ACTION_BAR_WIDTH+ACTION_BAR_WIDTH / 2, .left = ACTION_BAR_WIDTH / 2};
+ // s_label_layer = text_layer_create(grect_inset(bounds, label_insets));
+ // text_layer_set_text(s_label_layer, EXIT_WINDOW_MESSAGE);
+ // text_layer_set_background_color(s_label_layer, GColorClear);
+ // text_layer_set_text_alignment(s_label_layer, GTextAlignmentCenter);
+ // text_layer_set_font(s_label_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+ // layer_add_child(window_layer, text_layer_get_layer(s_label_layer));
 
   s_tick_bitmap = gbitmap_create_with_resource(RESOURCE_ID_TICK);
   s_cross_bitmap = gbitmap_create_with_resource(RESOURCE_ID_CROSS);
@@ -96,6 +104,7 @@ void exit_window_unload(Window *window){
   gbitmap_destroy(s_icon_bitmap);
   gbitmap_destroy(s_tick_bitmap);
   gbitmap_destroy(s_cross_bitmap);
+  gbitmap_destroy(exit_Window);
 
   window_destroy(window);
 exitWindow = NULL;
