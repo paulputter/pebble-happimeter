@@ -122,14 +122,14 @@ void select_menu_layer(Window *window) {
 
 void whoyouwith_window_load(Window *window){
   select_menu_layer(window);
-  Nobody = gbitmap_create_with_resource(RESOURCE_ID_Nobody);
-  Pet = gbitmap_create_with_resource(RESOURCE_ID_Pet);
-  Friend = gbitmap_create_with_resource(RESOURCE_ID_Friend);
-  Colleague = gbitmap_create_with_resource(RESOURCE_ID_Colleauge);
-  Family = gbitmap_create_with_resource(RESOURCE_ID_Family);
-  Significant_Other = gbitmap_create_with_resource(RESOURCE_ID_SignificantOther);
-  Other = gbitmap_create_with_resource(RESOURCE_ID_Other);
-  WhoAreYouWith = gbitmap_create_with_resource(RESOURCE_ID_WhoAreYouWithBolt);
+  Nobody = gbitmap_create_with_resource(RESOURCE_ID_Nobody_Time);
+  Pet = gbitmap_create_with_resource(RESOURCE_ID_Pet_Time);
+  Friend = gbitmap_create_with_resource(RESOURCE_ID_Friend_Time);
+  Colleague = gbitmap_create_with_resource(RESOURCE_ID_Colleauge_Time);
+  Family = gbitmap_create_with_resource(RESOURCE_ID_Family_Time);
+  Significant_Other = gbitmap_create_with_resource(RESOURCE_ID_SignificantOther_Emery);
+  Other = gbitmap_create_with_resource(RESOURCE_ID_Other_Time);
+  WhoAreYouWith = gbitmap_create_with_resource(RESOURCE_ID_WhoAreYouWithBolt_Time);
 }
 
 

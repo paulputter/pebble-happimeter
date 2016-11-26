@@ -133,12 +133,12 @@ void setup_menu_layer(Window *window) {
 // Load the used images
 void main_window_load(Window *window){
  setup_menu_layer(window);
-  Very_Happy = gbitmap_create_with_resource(RESOURCE_ID_Very_Happy_Smiley);
-  Happy = gbitmap_create_with_resource(RESOURCE_ID_Happy_Smiley);
-  Normal = gbitmap_create_with_resource(RESOURCE_ID_Normal_Smiley);
-  Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Unhappy_Smiley);
-  Very_Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Very_Unhappy_Smiley);
-  HowAreYouFeeling = gbitmap_create_with_resource(RESOURCE_ID_HowAreYouFeelingBolt);
+  Very_Happy = gbitmap_create_with_resource(RESOURCE_ID_Very_Happy_Smiley_Time);
+  Happy = gbitmap_create_with_resource(RESOURCE_ID_Happy_Smiley_Time);
+  Normal = gbitmap_create_with_resource(RESOURCE_ID_Normal_Smiley_Time);
+  Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Unhappy_Smiley_Time);
+  Very_Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Very_Unhappy_Smiley_Time);
+  HowAreYouFeeling = gbitmap_create_with_resource(RESOURCE_ID_HowAreYouFeelingBolt_Time);
 
 }
 

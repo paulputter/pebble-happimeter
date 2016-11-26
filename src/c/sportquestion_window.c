@@ -46,7 +46,7 @@ void sportquestion_window_load(Window *window){
  Layer *window_layer = window_get_root_layer(window);
     GRect bounds = layer_get_bounds(window_layer);
   
-    s_icon_bitmap = gbitmap_create_with_resource(RESOURCE_ID_CONFIRM);
+    s_icon_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DidYouDoSports_Time);
 
   // Background picture
   const GEdgeInsets icon_insets = {.top = 0, .right = 30, .bottom = 0, .left = 0};
