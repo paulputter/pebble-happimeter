@@ -122,14 +122,56 @@ void select_menu_layer(Window *window) {
 
 void whoyouwith_window_load(Window *window){
   select_menu_layer(window);
-  Nobody = gbitmap_create_with_resource(RESOURCE_ID_Nobody_Time);
-  Pet = gbitmap_create_with_resource(RESOURCE_ID_Pet_Time);
-  Friend = gbitmap_create_with_resource(RESOURCE_ID_Friend_Time);
-  Colleague = gbitmap_create_with_resource(RESOURCE_ID_Colleauge_Time);
-  Family = gbitmap_create_with_resource(RESOURCE_ID_Family_Time);
-  Significant_Other = gbitmap_create_with_resource(RESOURCE_ID_SignificantOther_Emery);
-  Other = gbitmap_create_with_resource(RESOURCE_ID_Other_Time);
-  WhoAreYouWith = gbitmap_create_with_resource(RESOURCE_ID_WhoAreYouWithBolt_Time);
+  
+  #if defined(PBL_PLATFORM_EMERY)
+   Nobody = gbitmap_create_with_resource(RESOURCE_ID_Nobody_Emery);
+   #else
+    Nobody = gbitmap_create_with_resource(RESOURCE_ID_Nobody_Time);
+   #endif 
+  
+  #if defined(PBL_PLATFORM_EMERY)
+     Pet = gbitmap_create_with_resource(RESOURCE_ID_Pet_Emery);
+   #else
+     Pet = gbitmap_create_with_resource(RESOURCE_ID_Pet_Time);
+   #endif 
+  
+  #if defined(PBL_PLATFORM_EMERY)
+    Friend = gbitmap_create_with_resource(RESOURCE_ID_Friend_Emery);
+   #else
+    Friend = gbitmap_create_with_resource(RESOURCE_ID_Friend_Time);
+   #endif 
+  
+  #if defined(PBL_PLATFORM_EMERY)
+    Colleague = gbitmap_create_with_resource(RESOURCE_ID_Colleauge_Emery);
+   #else
+    Colleague = gbitmap_create_with_resource(RESOURCE_ID_Colleauge_Time);
+   #endif 
+  
+  #if defined(PBL_PLATFORM_EMERY)
+    Family = gbitmap_create_with_resource(RESOURCE_ID_Family_Emery);
+   #else
+    Family = gbitmap_create_with_resource(RESOURCE_ID_Family_Time);
+   #endif 
+  
+  #if defined(PBL_PLATFORM_EMERY)
+    Significant_Other = gbitmap_create_with_resource(RESOURCE_ID_SignificantOther_Emery);
+   #else
+    Significant_Other = gbitmap_create_with_resource(RESOURCE_ID_SignificantOther_Time);
+   #endif 
+  
+  #if defined(PBL_PLATFORM_EMERY)
+    Other = gbitmap_create_with_resource(RESOURCE_ID_Other_Emery);
+   #else
+    Other = gbitmap_create_with_resource(RESOURCE_ID_Other_Time);
+   #endif 
+  
+   #if defined(PBL_PLATFORM_EMERY)
+    WhoAreYouWith = gbitmap_create_with_resource(RESOURCE_ID_WhoAreYouWithBolt_Emery);
+   #else
+    WhoAreYouWith = gbitmap_create_with_resource(RESOURCE_ID_WhoAreYouWithBolt_Time);
+   #endif 
+  
+  
 }
 
 

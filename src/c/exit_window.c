@@ -66,13 +66,23 @@ void exit_window_load(Window *window){
   
  Layer *window_layer = window_get_root_layer(window);
  // GRect bounds = layer_get_bounds(window_layer);
-  
-  exit_Window = gbitmap_create_with_resource(RESOURCE_ID_Exit_Window_Time);
+  #if defined(PBL_PLATFORM_EMERY)
+    exit_Window = gbitmap_create_with_resource(RESOURCE_ID_Exit_Window_Emery);
+   #else
+     exit_Window = gbitmap_create_with_resource(RESOURCE_ID_Exit_Window_Time);
+   #endif
+ 
+  #if defined(PBL_PLATFORM_EMERY)
+  s_icon_layer = bitmap_layer_create(GRect(0,0,200,228));
+  #else 
   s_icon_layer = bitmap_layer_create(GRect(0,0,144,168));
+  #endif
+  
   bitmap_layer_set_bitmap(s_icon_layer, exit_Window);
   bitmap_layer_set_compositing_mode(s_icon_layer, GCompOpSet);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_icon_layer));
   
+
 
  // const GEdgeInsets label_insets = {.top = 10, .right = ACTION_BAR_WIDTH+ACTION_BAR_WIDTH / 2, .left = ACTION_BAR_WIDTH / 2};
  // s_label_layer = text_layer_create(grect_inset(bounds, label_insets));

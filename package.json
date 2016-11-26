@@ -37,6 +37,18 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/HowAreYouFeelingBolt_Emery",
+                    "name": "HowAreYouFeelingBolt_Emery",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/WhoAreYouWithBolt_Emery",
+                    "name": "WhoAreYouWithBolt_Emery",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/WhoAreYouWithBolt_Time",
                     "name": "WhoAreYouWithBolt_Time",
                     "targetPlatforms": [
@@ -46,18 +58,6 @@
                         "diorite",
                         "emery"
                     ],
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/WhoAreYouWith_Emery",
-                    "name": "WhoAreYouWith_Emery",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/HowAreYouFeeling_Emery",
-                    "name": "HowAreYouFeeling_Emery",
-                    "targetPlatforms": null,
                     "type": "bitmap"
                 },
                 {
@@ -170,7 +170,7 @@
                 },
                 {
                     "file": "images/ExitWindow_Emery",
-                    "name": "ExitWindow_Emery",
+                    "name": "Exit_Window_Emery",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
@@ -189,12 +189,6 @@
                 {
                     "file": "images/Happy_Smiley_Time",
                     "name": "Happy_Smiley_Time",
-                    "targetPlatforms": null,
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/HowAreYouFeeling_Time",
-                    "name": "HowAreYouFeeling_Time",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },

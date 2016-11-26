@@ -133,13 +133,45 @@ void setup_menu_layer(Window *window) {
 // Load the used images
 void main_window_load(Window *window){
  setup_menu_layer(window);
-  Very_Happy = gbitmap_create_with_resource(RESOURCE_ID_Very_Happy_Smiley_Time);
-  Happy = gbitmap_create_with_resource(RESOURCE_ID_Happy_Smiley_Time);
-  Normal = gbitmap_create_with_resource(RESOURCE_ID_Normal_Smiley_Time);
-  Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Unhappy_Smiley_Time);
-  Very_Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Very_Unhappy_Smiley_Time);
-  HowAreYouFeeling = gbitmap_create_with_resource(RESOURCE_ID_HowAreYouFeelingBolt_Time);
-
+  
+   #if defined(PBL_PLATFORM_EMERY)
+     Very_Happy = gbitmap_create_with_resource(RESOURCE_ID_Very_Happy_Smiley_Emery);
+   #else
+     Very_Happy = gbitmap_create_with_resource(RESOURCE_ID_Very_Happy_Smiley_Time);
+  #endif
+  
+    #if defined(PBL_PLATFORM_EMERY)
+     Happy = gbitmap_create_with_resource(RESOURCE_ID_Happy_Smiley_Emery);
+   #else
+     Happy = gbitmap_create_with_resource(RESOURCE_ID_Happy_Smiley_Time);
+  #endif
+  
+    #if defined(PBL_PLATFORM_EMERY)
+     Normal = gbitmap_create_with_resource(RESOURCE_ID_Normal_Smiley_Emery);
+   #else
+     Normal = gbitmap_create_with_resource(RESOURCE_ID_Normal_Smiley_Time);
+  #endif
+  
+    #if defined(PBL_PLATFORM_EMERY)
+     Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Unhappy_Smiley_Emery);
+   #else
+     Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Unhappy_Smiley_Time);
+  #endif
+  
+    #if defined(PBL_PLATFORM_EMERY)
+    Very_Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Very_Unhappy_Smiley_Emery);
+   #else
+    Very_Unhappy = gbitmap_create_with_resource(RESOURCE_ID_Very_Unhappy_Smiley_Time);
+  #endif
+  
+    #if defined(PBL_PLATFORM_EMERY)
+    HowAreYouFeeling = gbitmap_create_with_resource(RESOURCE_ID_HowAreYouFeelingBolt_Emery);
+   #else
+   HowAreYouFeeling = gbitmap_create_with_resource(RESOURCE_ID_HowAreYouFeelingBolt_Time);
+  #endif
+  
+ 
+ 
 }
 
 void main_window_unload(Window *window){

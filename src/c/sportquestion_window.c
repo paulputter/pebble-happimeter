@@ -7,7 +7,7 @@
 Window *sportquestionWindow;
 MenuLayer *sportquestionMenuLayer;
 static TextLayer *s_label_layer;
-static TextLayer *s_frame_layer;
+// static TextLayer *s_frame_layer;
 static BitmapLayer *s_icon_layer;
 
 static ActionBarLayer *s_action_bar_layer;
@@ -46,7 +46,14 @@ void sportquestion_window_load(Window *window){
  Layer *window_layer = window_get_root_layer(window);
     GRect bounds = layer_get_bounds(window_layer);
   
+  // IF ELSE
+
+  #if defined(PBL_PLATFORM_EMERY)
+    s_icon_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DidYouDoSports_Emery);
+   #else
     s_icon_bitmap = gbitmap_create_with_resource(RESOURCE_ID_DidYouDoSports_Time);
+   #endif 
+  
 
   // Background picture
   const GEdgeInsets icon_insets = {.top = 0, .right = 30, .bottom = 0, .left = 0};
