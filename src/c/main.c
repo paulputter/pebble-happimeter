@@ -20,7 +20,7 @@ static void prv_default_settings() {
   config.email = default_email;
   config.weight = default_weight;
   config.sportiness = default_sportiness;
-  // TODO: ADD birthdate
+  config.age = default_age;
 }
 
 // Read settings from persistent storage
@@ -34,8 +34,6 @@ static void prv_load_settings() {
 static void prv_save_settings() {
   // Save the settings to persistent storage
   persist_write_data(SETTINGS_KEY, &config, sizeof(config));
-  
-  /* TODO: Upload user data to Server! ----------------------------------- END OF TODO */
 }
 
 // Read the user's app configuration
@@ -72,13 +70,23 @@ static void prv_inbox_received_handler(DictionaryIterator *iter, void *context) 
   }
   
   // Read sportiness
-    Tuple *sportiness_t = dict_find(iter, MESSAGE_KEY_userinfo_sportiness);
+  Tuple *sportiness_t = dict_find(iter, MESSAGE_KEY_userinfo_sportiness);
   if(sportiness_t) {
     config.sportiness = sportiness_t->value->int32;
     APP_LOG(APP_LOG_LEVEL_INFO, "Configured sportiness is %i", config.sportiness);
   }
   else{
     APP_LOG(APP_LOG_LEVEL_ERROR, "No sportiness was configured");
+  }
+  
+  // Read age
+  Tuple *age_t = dict_find(iter, MESSAGE_KEY_userinfo_age);
+  if(age_t) {
+    config.age = age_t->value->int32;
+    APP_LOG(APP_LOG_LEVEL_INFO, "Configured age is %i", config.age);
+  }
+  else{
+    APP_LOG(APP_LOG_LEVEL_ERROR, "No age was configured");
   }
   
   // Save the settings to persistent storage and upload it on server

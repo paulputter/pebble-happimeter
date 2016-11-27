@@ -1,9 +1,18 @@
 module.exports = function(minified) {
+  //  ---------------------------- attributes  ---------------------------- \\
   var clayConfig = this;
   var _ = minified._;
   var $ = minified.$;
   var HTML = minified.HTML;
 
+  
+  //  -------------------------- private functions -------------------------- \\
+  function emailIsValid(email){
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+ 
+  // -------------------------- public functions -------------------------- \\
   // set the correct description according to sport level 1 - 5
   function toggleSportyDesc() {
     var sport_num = clayConfig.getItemByMessageKey('userinfo_sportiness');
@@ -36,11 +45,7 @@ module.exports = function(minified) {
     }
   }
 
-  function emailIsValid(email){
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-  }
-  
+   
   // checks on each char entered if the email address is valid according to REGEX
   // if it is valid enable submit button
   // else disable submit button
@@ -56,7 +61,7 @@ module.exports = function(minified) {
   }
   
   // Aaand double check email addrees ... 
-  // cause maybe the user thinks he is smarter than the developers... -_-
+  // because maybe the user thinks he is smarter than the developers... -_-
   function verifyEmailOnSubmit(){
     var email = clayConfig.getItemByMessageKey("userinfo_email");
     if (!emailIsValid(email.get()))

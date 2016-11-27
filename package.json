@@ -31,7 +31,8 @@
             "userinfo_sportiness",
             "happiness",
             "did_any_sports",
-            "who_have_you_been_with"
+            "who_have_you_been_with",
+            "userinfo_age"
         ],
         "projectType": "native",
         "resources": {

@@ -38,17 +38,11 @@ module.exports = [
       },
       {
         "type": "slider",
-        "messageKey": "userinfo_sportiness",
-        "label": "How sporty are you?",
-     // "description": "i am the slider description",
-        "devaultValue": 3,
-        "min": 1,
-        "max": 5
-      },
-      { //text to show how sporty the user is. should be variable via a function
-        "type": "text",
-        "id": "sportiness_description",
-       "defaultValue": "<span style='font-size:0.8em'>I dont do sports regularly</span>"
+        "messageKey": "userinfo_age",
+        "label": "What is your age?",
+        "min" : 4,
+        "max" : 100,
+        "defaultValue" : 18
       },
       {
         "type": "slider",
@@ -57,6 +51,20 @@ module.exports = [
         "defaultValue": "70",
         "min": 40,
         "max": 200
+      },
+       {
+        "type": "slider",
+        "messageKey": "userinfo_sportiness",
+        "label": "How sporty are you?",
+     // "description": "i am the slider description",
+        "devaultValue": 3,
+        "min": 1,
+        "max": 5
+      },
+      { //text to show how sporty the user is. this is controlled via a function in custom-clay.js
+        "type": "text",
+        "id": "sportiness_description",
+       "defaultValue": "<span style='font-size:0.8em'>I dont do sports regularly</span>"
       }
     ]
   },
@@ -66,7 +74,7 @@ module.exports = [
       {
         "type" : "text",
 //        "messageKey": "linkToWebsite",
-        "defaultValue": "<a href='http://www.google.com'>I am a link already</a>"
+        "defaultValue": "<a href='http://www.google.com'>Analyze your data on our website</a>"
       }
     ]
   },
