@@ -113,9 +113,9 @@ void setAnswer(int questionNumber, int answer){
   userAnswers[questionNumber - 1] = answer;
 }
 
-void launch_main_window3 (){
-  window_stack_push(main_window_get_window(), true);
-}
+//void launch_main_window3 (){
+  //window_stack_push(main_window_get_window(), true);
+//}
 
 
 static void init() {
@@ -141,16 +141,17 @@ static void init() {
   main_window_create();
   tree_window_create();
 
-    if(launch_reason() == APP_LAUNCH_WAKEUP) {
+  if(launch_reason() == APP_LAUNCH_WORKER) {
+    window_stack_push(splash_window_get_window(), true);
+    app_timer_register(0000, NULL, NULL);
+    //else the normal main window pops up
+  } else if(launch_reason() == APP_LAUNCH_WAKEUP) {
     //Vibration
     vibes_double_pulse();
     window_stack_push(wakeup_window_get_window(), true);
-    
     //else the normal main window pops up
   } else {
-          window_stack_push(splash_window_get_window(), true);
-   app_timer_register(0000, launch_main_window3, NULL);
-  
+   window_stack_push(main_window_get_window(), true);
   }
 
 }
