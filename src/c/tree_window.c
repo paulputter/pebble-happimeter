@@ -37,6 +37,26 @@ uint32_t counter;
   window_stack_pop_all(true);
 }*/
 
+// overwrite default setting for back button
+void tree_back_single_click_handler(ClickRecognizerRef recognizer, void *context){
+   window_stack_pop_all(true);
+}
+
+void tree_down_single_click_handler(ClickRecognizerRef recognizer, void *context){
+  window_stack_pop_all(true);
+}
+
+
+void tree_up_single_click_handler(ClickRecognizerRef recognizer, void *context){
+   window_stack_pop_all(true);
+}
+
+void tree_click_config_provider(void *context) {
+    window_single_click_subscribe(BUTTON_ID_UP, (ClickHandler)tree_up_single_click_handler);
+  window_single_click_subscribe(BUTTON_ID_DOWN, (ClickHandler) tree_down_single_click_handler);
+  window_single_click_subscribe(BUTTON_ID_BACK, (ClickHandler) tree_back_single_click_handler);
+}
+
 
 
 
@@ -118,6 +138,8 @@ APP_LOG(APP_LOG_LEVEL_INFO,"%ld",persist_read_int(counter));
    text_layer_set_text_alignment(treeImageTitle, GTextAlignmentCenter);
    layer_add_child(window_layer, text_layer_get_layer(treeImageTitle));
   */
+ //set config providers
+  window_set_click_config_provider(treeWindow, tree_click_config_provider);
 }
 
 void tree_window_unload(Window *window){
