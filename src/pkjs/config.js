@@ -49,7 +49,7 @@ module.exports = [
         "messageKey": "userinfo_weight",
         "label": "What is your weight (in Kg)?",
         "defaultValue": "70",
-        "min": 40,
+        "min": 20,
         "max": 200
       },
        {
@@ -74,7 +74,7 @@ module.exports = [
       {
         "type" : "text",
 //        "messageKey": "linkToWebsite",
-        "defaultValue": "<a href='http://www.google.com'>Analyze your data on our website</a>"
+        "defaultValue": "<a href='http://team9.coins.he-hosting.de/login'>Analyze your data on our website</a>"
       }
     ]
   },

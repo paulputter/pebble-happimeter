@@ -8,6 +8,7 @@
 #include "exit_window.h"
 #include "src/c/uploader.h"
 #include "src/c/tree_window.h"
+#include "enter_email_window.h"
 // Persistent storage key
 #define SETTINGS_KEY 1
 
@@ -133,35 +134,41 @@ static void init() {
   app_message_register_inbox_received(prv_inbox_received_handler);
   app_message_open(128, 128);
   
-  // start the background worker
-  AppWorkerResult app_worker_result = app_worker_launch();
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "App worker launched with result %d", app_worker_result);
-  
-  // subscribe to background worker messages
-  app_worker_message_subscribe(worker_message_handler);
-  
-  // init UI stuff
-  wakeup_window_create();
-  exit_window_create();
-  splash_window_create();
-  whoyouwith_window_create();
-  sportquestion_window_create();
-  main_window_create();
-  tree_window_create();
-
-  if(launch_reason() == APP_LAUNCH_WORKER) {
-    window_stack_push(splash_window_get_window(), true);
-    app_timer_register(0000, NULL, NULL);
-    //else the normal main window pops up
-  } else if(launch_reason() == APP_LAUNCH_WAKEUP) {
-    //Vibration
-    vibes_double_pulse();
-    window_stack_push(wakeup_window_get_window(), true);
-    //else the normal main window pops up
-  } else {
-   window_stack_push(main_window_get_window(), true);
+  // if the user has not entered any email address dont let him open this pebble app
+  if (config.email == default_email){
+    dialog_message_window_push();
   }
-
+  else{ //config.email != default_email
+    
+    // start the background worker
+    AppWorkerResult app_worker_result = app_worker_launch();
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "App worker launched with result %d", app_worker_result);
+    
+    // subscribe to background worker messages
+    app_worker_message_subscribe(worker_message_handler);
+    
+    // init UI stuff
+    wakeup_window_create();
+    exit_window_create();
+    splash_window_create();
+    whoyouwith_window_create();
+    sportquestion_window_create();
+    main_window_create();
+    tree_window_create();
+  
+    if(launch_reason() == APP_LAUNCH_WORKER) {
+      window_stack_push(splash_window_get_window(), true);
+      app_timer_register(0000, NULL, NULL);
+      //else the normal main window pops up
+    } else if(launch_reason() == APP_LAUNCH_WAKEUP) {
+      //Vibration
+      vibes_double_pulse();
+      window_stack_push(wakeup_window_get_window(), true);
+      //else the normal main window pops up
+    } else {
+     window_stack_push(main_window_get_window(), true);
+    }
+  }
 }
 
 
